@@ -1,0 +1,19 @@
+#container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#logo {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+}
+
+#news {
+  float: left;
+}
+
+#login {
+  float: left;
+  margin-left: 20px;
+}
