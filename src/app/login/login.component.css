@@ -1,0 +1,14 @@
+#container {
+  margin: 100px 150px 100px;
+}
+
+#user-img {
+  margin-bottom: 20px;
+  margin-left: 50px;
+}
+
+button {
+  width: 100px;
+  height: 25px;
+  margin-left: 10px;
+}
