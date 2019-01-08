@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService, Hello } from '../app.service';
+import {SessionStorageService} from '../session-storage.service';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +7,17 @@ import { AppService, Hello } from '../app.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private hello: Hello = { message: '' };
+  // TODO emmit login signal from login component to change username
+  username = 'User';
+  isLoggedIn = false;
 
-  constructor(private app: AppService) { }
+  constructor(private storage: SessionStorageService) { }
 
   ngOnInit() {
-    this.app.getHello().subscribe(data => this.hello = data);
+    // TODO emit event from login
+    if (this.storage.getToken()) {
+      this.username = this.storage.getUsername();
+      this.isLoggedIn = true;
+    }
   }
 }

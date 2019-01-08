@@ -3,31 +3,34 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ConfigComponent } from './config/config.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {APIInterceptor} from './config/api-interceptor';
-import { MessagesComponent } from './messages/messages.component';
+import { HttpClientModule } from '@angular/common/http';
+import { httpInterceptorProviders } from './api-interceptor';
 import { NewsComponent } from './news/news.component';
 import { LoginComponent } from './login/login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material';
+import { MaterialModule } from '../material-module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ConfigComponent,
-    MessagesComponent,
     NewsComponent,
-    LoginComponent
+    LoginComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    FormsModule,
+    HttpClientModule,
+    MaterialModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: APIInterceptor,
-    multi: true
-  }],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

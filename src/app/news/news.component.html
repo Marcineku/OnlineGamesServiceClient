@@ -1,23 +1,18 @@
-<nav>
-  <ul>
-    <li *ngFor="let new of news">
-      <div class="news">
-        <div class="news-pic">
-          <img src="assets/img/cogwheel.png">
-        </div>
-        <div class="news-text">
-          <div class="news-title">
-            {{new.title | uppercase | slice:0:98}}
-            <span *ngIf="new.text.length > 98">...</span>
-          </div>
-          <div class="news-content">
-            {{new.text | slice:0:150}}
-            <span *ngIf="new.text.length > 150">...</span>
-          </div>
-          <div class="news-timestamp">
-            {{new.publicationDate | date:'dd-MM-yyyy'}}
-          </div>
-        </div>
+<div id="news-container" *ngFor="let new of news">
+  <div class="news">
+    <div class="news-pic">
+      <img src="assets/img/cogwheel.png">
+    </div>
+    <div class="news-text">
+      <div class="news-title">
+        {{new.title | uppercase}}
       </div>
-  </ul>
-</nav>
+      <div class="news-content">
+        {{new.text}}
+      </div>
+      <div class="news-timestamp">
+        {{new.publicationDate | date:'dd-MM-yyyy'}}
+      </div>
+    </div>
+  </div>
+</div>

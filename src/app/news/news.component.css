@@ -1,12 +1,7 @@
-nav ul {
-  width: 800px;
-  height: 650px;
+#news-container {
   overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-nav li {
-  list-style-type: none;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
 }
 
 .news {
@@ -17,7 +12,6 @@ nav li {
 
 .news-pic {
   width: 256px;
-  height: 128px;
   clear: both;
   float: left;
   background-color: grey;
@@ -32,13 +26,14 @@ nav li {
 .news-text {
   padding-left: 10px;
   float: left;
-  width: 65%;
+  width: 80%;
 }
 
 .news-title {
   color: #8e7f22;
   padding: 5px;
-  height: 40px;
+  height: 32px;
+  overflow: hidden;
 }
 
 .news:hover .news-text {
@@ -48,12 +43,14 @@ nav li {
 .news-content {
   color: dimgrey;
   padding: 5px;
-  height: 40px;
+  height: 48px;
   font-size: 15px;
+  overflow: hidden;
 }
 
 .news-timestamp {
   color: dimgrey;
   padding: 5px;
   font-size: 12px;
+  overflow: hidden;
 }

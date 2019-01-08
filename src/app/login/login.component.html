@@ -1,7 +1,37 @@
-<div id="container">
+<div id="login-cointainer">
   <img src="assets/img/user.png" id="user-img">
-  <div id="login-buttons">
-    <button>Login</button>
-    <button>Register</button>
+  <div *ngIf="!isLoggedIn">
+    <mat-tab-group>
+      <mat-tab label="Login">
+        <form>
+          <mat-form-field id="login-input-un">
+            <input matInput placeholder="Username" type="text" [formControl]="username">
+            <mat-error *ngIf="username.invalid">Enter username that contains from 4 to 20 characters</mat-error>
+          </mat-form-field>
+        </form>
+        <form>
+          <mat-form-field id="login-input-pw">
+            <input matInput placeholder="Password" type="password" [formControl]="password">
+          </mat-form-field>
+        </form>
+        <div>
+          <button mat-raised-button id="login-button" color="primary" (click)="onLogin()">Login</button>
+        </div>
+        <div *ngIf="isLoginFailed" id="error-message">{{errorMessage}}</div>
+      </mat-tab>
+      <mat-tab label="Register">
+
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <div id="username"><strong>Username: </strong>{{getUsername()}}</div>
+    <div id="roles"><strong>Roles: </strong>{{getAuthorities()}}</div>
+    <div id="token-type"><strong>Token type: </strong>{{getTokenType()}}</div>
+    <div id="token"><strong>Token: </strong>{{getToken()}}</div>
+    <div>
+      <button mat-raised-button id="logout-button" (click)="onLogout()">Logout</button>
+    </div>
   </div>
 </div>

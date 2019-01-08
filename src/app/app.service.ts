@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of} from 'rxjs';
-import { MessageService } from './message.service';
-import { catchError, tap } from 'rxjs/operators';
-
-export interface Hello {
-  message: string;
-}
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {TicTacToeDTO} from './games/tic-tac-toe-d-t-o';
 
 export interface News {
   id: number;
@@ -17,42 +12,23 @@ export interface News {
   language: string;
 }
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class AppService {
-  private helloUrl = 'hello';
   private newsUrl = 'news';
 
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
-
-  public getHello(): Observable<any> {
-    return this.http.get(this.helloUrl)
-      .pipe(
-        tap(_ => this.log('fetched hello')),
-        catchError(this.handleError('getHello', []))
-      );
-  }
+  constructor(private http: HttpClient) { }
 
   public getNews(): Observable<any> {
-    return this.http.get(this.newsUrl)
-      .pipe(
-        tap(_ => this.log('fetched news')),
-        catchError(this.handleError('getNews', []))
-      );
+    return this.http.get(this.newsUrl);
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    this.messageService.add(`AppService: ${message}`);
+  public createGame(gameDto: TicTacToeDTO): Observable<string> {
+    return this.http.post<string>('games/tictactoe', gameDto, httpOptions);
   }
 }
