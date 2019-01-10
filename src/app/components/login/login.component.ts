@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AuthService} from '../services/auth.service';
-import {SessionStorageService} from '../services/session-storage.service';
+import {AuthService} from '../../services/auth.service';
+import {SessionStorageService} from '../../services/session-storage.service';
 import {FormControl, Validators} from '@angular/forms';
-import {LoginForm} from '../request-bodies/login-form';
+import {LoginForm} from '../../request-bodies/login-form';
 
 // TODO add logging animation
 

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, ValidationErrors, Validators} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
-import {AuthService} from '../services/auth.service';
-import {RegistrationForm} from '../request-bodies/registration-form';
+import {AuthService} from '../../services/auth.service';
+import {RegistrationForm} from '../../request-bodies/registration-form';
 
 @Component({
   selector: 'app-registration',

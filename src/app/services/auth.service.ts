@@ -30,3 +30,8 @@ export class AuthService {
     return this.http.post('auth/signup', registrationForm, { responseType: 'text' } );
   }
 }
+
+export const ROLE = {
+  USER: 'ROLE_USER',
+  ADMIN: 'ROLE_ADMIN'
+};

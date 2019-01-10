@@ -1,0 +1,10 @@
+#news-input-type, #news-input-text, #news-input-title, #news-input-language, #news-create-button, #news-create-header {
+  width: 200px;
+  display: block;
+  margin: 20px;
+}
+
+#news-create-info {
+  display: block;
+  margin: 20px;
+}

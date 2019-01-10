@@ -1,0 +1,31 @@
+<div id="admin-panel-container">
+
+  <h3 id="news-create-header">Add news</h3>
+
+  <mat-form-field id="news-input-type">
+    <input matInput placeholder="Type" [formControl]="type">
+    <mat-error *ngIf="type.invalid">Enter type</mat-error>
+  </mat-form-field>
+
+  <mat-form-field id="news-input-text">
+    <input matInput placeholder="Text" [formControl]="text">
+    <mat-error *ngIf="text.invalid">Enter text</mat-error>
+  </mat-form-field>
+
+  <mat-form-field id="news-input-title">
+    <input matInput placeholder="Title" [formControl]="title">
+    <mat-error *ngIf="title.invalid">Enter title</mat-error>
+  </mat-form-field>
+
+  <mat-form-field id="news-input-language">
+    <mat-select placeholder="Language" [formControl]="languages">
+      <mat-option *ngFor="let lang of languagesList" [value]="lang">{{lang}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="languages.invalid">Pick one language</mat-error>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button id="news-create-button" color="primary" (click)="onCreateNews()">Create news</button>
+  </div>
+  <div id="news-create-info">{{info}}</div>
+</div>

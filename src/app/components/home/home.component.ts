@@ -1,7 +1,8 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import { SessionStorageService } from '../services/session-storage.service';
+import { SessionStorageService } from '../../services/session-storage.service';
 import {MatTabChangeEvent} from '@angular/material';
 import {MediaMatcher} from '@angular/cdk/layout';
+import {ROLE} from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   username = 'User';
   isLoggedIn = false;
   selectedTab = 0;
+  isAdminLoggedIn = false;
 
   private mobileQueryListener;
 
@@ -26,6 +28,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.username = this.sessionStorageService.getUsername();
       this.isLoggedIn = true;
       this.selectedTab = 1;
+
+      if (this.sessionStorageService.getAuthorities().includes(ROLE.ADMIN)) {
+        this.isAdminLoggedIn = true;
+        this.selectedTab = 2;
+      }
     }
 
     this.mobileQuery = this.media.matchMedia('(max-width: 600px)');
@@ -43,9 +50,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.isLoggedIn === true) {
       this.username = this.sessionStorageService.getUsername();
       this.selectedTab = 1;
+
+      if (this.sessionStorageService.getAuthorities().includes(ROLE.ADMIN)) {
+        this.isAdminLoggedIn = true;
+        this.selectedTab = 2;
+      }
     } else {
       this.username = 'User';
       this.selectedTab = 0;
+      this.isAdminLoggedIn = false;
     }
   }
 

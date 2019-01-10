@@ -1,0 +1,22 @@
+<div id="chat-container">
+  <button mat-raised-button id="connect-button" (click)="onConnect()">Connect</button>
+
+  <div style="text-align:center">
+    <h1>
+      Welcome to {{title}}!
+    </h1>
+    <div class="chat-container">
+      <div class="chat">
+        <div class="message"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="send-button">
+      <input label="Message" id="input" type="text" #input>
+    </div>
+  </div>
+
+  <button mat-raised-button class="send" (click)="sendMessage(input.value)">Sent</button>
+</div>

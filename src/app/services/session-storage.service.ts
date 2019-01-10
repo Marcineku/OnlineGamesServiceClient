@@ -9,8 +9,6 @@ const AUTHORITIES_KEY = 'AuthAuthorities';
   providedIn: 'root'
 })
 export class SessionStorageService {
-  private roles: Array<string> = [];
-
   constructor() { }
 
   public setToken(token: string) {
@@ -46,15 +44,15 @@ export class SessionStorageService {
   }
 
   public getAuthorities(): string[] {
-    this.roles = [];
+    const roles = [];
 
     if (sessionStorage.getItem(TOKEN_KEY)) {
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)).forEach(authority => {
-        this.roles.push(authority.authority);
+        roles.push(authority.authority);
       });
     }
 
-    return this.roles;
+    return roles;
   }
 
   public clear() {

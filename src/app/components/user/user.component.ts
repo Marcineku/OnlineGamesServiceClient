@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {SessionStorageService} from '../services/session-storage.service';
+import {SessionStorageService} from '../../services/session-storage.service';
 import {MatTabChangeEvent} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {LoginComponent} from '../login/login.component';

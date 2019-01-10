@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TicTacToeDTO } from '../request-bodies/tic-tac-toe-d-t-o';
-import { GamesService } from '../services/games.service';
+import {GamesService} from '../../services/games.service';
+import {TicTacToeDTO} from '../../request-bodies/tic-tac-toe-d-t-o';
 
 @Component({
   selector: 'app-games',

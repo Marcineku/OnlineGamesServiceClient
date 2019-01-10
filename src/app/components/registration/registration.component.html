@@ -22,7 +22,7 @@
              type="password"
              formControlName="password"
              autocomplete="new-password">
-      <mat-error *ngIf="passwordForm.invalid">Enter password that contains between 6 and 16 characters</mat-error>
+      <mat-error *ngIf="passwordForm.invalid === null ? true : passwordForm.invalid">Enter password that contains between 6 and 16 characters</mat-error>
     </mat-form-field>
 
     <mat-form-field id="register-input-re-password">
