@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AppService} from '../app.service';
-import { TicTacToeDTO } from './tic-tac-toe-d-t-o';
+import { TicTacToeDTO } from '../request-bodies/tic-tac-toe-d-t-o';
+import { GamesService } from '../services/games.service';
 
 @Component({
   selector: 'app-games',
@@ -10,15 +10,14 @@ import { TicTacToeDTO } from './tic-tac-toe-d-t-o';
 export class GamesComponent implements OnInit {
   gameInfo: any = '';
 
-  constructor(private app: AppService) { }
+  constructor(private gamesService: GamesService) { }
 
   ngOnInit() {
   }
 
   createNewGame(gameType: string, pieceCode: string) {
-    this.app.createGame(new TicTacToeDTO(gameType, pieceCode)).subscribe(
+    this.gamesService.createGame(new TicTacToeDTO(gameType, pieceCode)).subscribe(
       data => {
-        console.log(data);
         this.gameInfo = data;
       },
       error => {

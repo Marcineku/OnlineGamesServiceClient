@@ -13,7 +13,7 @@ export class SessionStorageService {
 
   constructor() { }
 
-  public saveToken(token: string) {
+  public setToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
     window.sessionStorage.setItem(TOKEN_KEY, token);
   }
@@ -22,7 +22,7 @@ export class SessionStorageService {
     return sessionStorage.getItem(TOKEN_KEY);
   }
 
-  public saveTokenType(tokenType: string) {
+  public setTokenType(tokenType: string) {
     window.sessionStorage.removeItem(TOKEN_TYPE_KEY);
     window.sessionStorage.setItem(TOKEN_TYPE_KEY, tokenType);
   }
@@ -31,7 +31,7 @@ export class SessionStorageService {
     return sessionStorage.getItem(TOKEN_TYPE_KEY);
   }
 
-  public saveUsername(username: string) {
+  public setUsername(username: string) {
     window.sessionStorage.removeItem(USERNAME_KEY);
     window.sessionStorage.setItem(USERNAME_KEY, username);
   }
@@ -40,13 +40,9 @@ export class SessionStorageService {
     return sessionStorage.getItem(USERNAME_KEY);
   }
 
-  public saveAuthorities(authorities: string[]) {
+  public setAuthorities(authorities: string[]) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-  }
-
-  public clear() {
-    window.sessionStorage.clear();
   }
 
   public getAuthorities(): string[] {
@@ -59,5 +55,9 @@ export class SessionStorageService {
     }
 
     return this.roles;
+  }
+
+  public clear() {
+    window.sessionStorage.clear();
   }
 }

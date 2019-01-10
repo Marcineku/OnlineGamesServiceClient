@@ -7,13 +7,13 @@
 
   <mat-sidenav-container id="sidenav-container">
 
-    <mat-sidenav id="sidenav" #sidenav mode="over" position="end" [opened]="true">
-      <app-login></app-login>
+    <mat-sidenav [style.width]="mobileQuery.matches ? '100%' : '40%'" #sidenav mode="over" position="end" [opened]="!isLoggedIn">
+      <app-user (logged)="onLogged($event)"></app-user>
     </mat-sidenav>
 
     <mat-sidenav-content>
 
-      <mat-tab-group>
+      <mat-tab-group (selectedTabChange)="onSelectedTabChange($event)" [selectedIndex]="selectedTab">
         <mat-tab label="News">
           <app-news></app-news>
         </mat-tab>

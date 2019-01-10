@@ -1,0 +1,12 @@
+#user-img {
+  display: block;
+  margin: 10% auto 10% auto;
+}
+
+::ng-deep #user-container .mat-tab-labels{
+  justify-content: center;
+}
+
+#logout-button {
+  margin: 10px;
+}

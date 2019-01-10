@@ -1,0 +1,42 @@
+<form>
+  <mat-form-field id="register-input-username">
+    <input matInput placeholder="Username" type="text" [formControl]="username" autocomplete="username">
+    <mat-error *ngIf="username.invalid">Enter username that contains from 4 to 20 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field id="register-input-email">
+    <input matInput placeholder="Email" type="email" [formControl]="email" autocomplete="email">
+    <mat-error *ngIf="email.invalid">Enter valid email address</mat-error>
+  </mat-form-field>
+
+  <mat-form-field id="register-input-role">
+    <mat-select placeholder="Roles" [formControl]="roles" [multiple]="true">
+      <mat-option *ngFor="let role of rolesList" [value]="role">{{role}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="roles.invalid">Choose at least one role</mat-error>
+  </mat-form-field>
+
+  <div [formGroup]="passwordForm">
+    <mat-form-field id="register-input-password">
+      <input matInput placeholder="Password"
+             type="password"
+             formControlName="password"
+             autocomplete="new-password">
+      <mat-error *ngIf="passwordForm.invalid">Enter password that contains between 6 and 16 characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field id="register-input-re-password">
+      <input matInput placeholder="Confirm password"
+             type="password"
+             formControlName="confirmPassword"
+             autocomplete="new-password"
+             [errorStateMatcher]="matcher">
+      <mat-error *ngIf="passwordForm.hasError('notSame')">Passwords do not match</mat-error>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button id="register-button" color="primary" (click)="onRegister()">Submit</button>
+  </div>
+  <div *ngIf="isRegistrationFailed" id="error-message">{{errorMessage}}</div>
+</form>
+

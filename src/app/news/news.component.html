@@ -1,17 +1,17 @@
-<div id="news-container" *ngFor="let new of news">
+<div id="news-container" *ngFor="let news of newsList">
   <div class="news">
     <div class="news-pic">
       <img src="assets/img/cogwheel.png">
     </div>
     <div class="news-text">
       <div class="news-title">
-        {{new.title | uppercase}}
+        {{news.title | uppercase}}
       </div>
       <div class="news-content">
-        {{new.text}}
+        {{news.text}}
       </div>
       <div class="news-timestamp">
-        {{new.publicationDate | date:'dd-MM-yyyy'}}
+        {{news.publicationDate | date:'dd-MM-yyyy'}}
       </div>
     </div>
   </div>

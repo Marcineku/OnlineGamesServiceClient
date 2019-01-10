@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {SessionStorageService} from '../session-storage.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AuthService} from '../services/auth.service';
+import {SessionStorageService} from '../services/session-storage.service';
 import {FormControl, Validators} from '@angular/forms';
-import {LoginForm} from '../auth/login-form';
+import {LoginForm} from '../request-bodies/login-form';
 
 // TODO add logging animation
 
@@ -12,80 +12,66 @@ import {LoginForm} from '../auth/login-form';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username = new FormControl('', [Validators.minLength(4), Validators.maxLength(20)]);
-  password = new FormControl('', []);
+  username = new FormControl('', [Validators.minLength(4), Validators.maxLength(20), Validators.required]);
+  password = new FormControl('', [Validators.required]);
 
-  isLoggedIn = false;
+  @Input() set registered(registered: boolean) {
+    if (registered) {
+      this.username.reset();
+      this.password.reset();
+      this.isLoginFailed = false;
+      this.isRegistered = true;
+    } else {
+      this.isRegistered = false;
+    }
+  }
+  isRegistered = false;
+
+  @Output() loggedIn = new EventEmitter();
   isLoginFailed = false;
 
   errorMessage = '';
-  roles: string[] = [];
 
-  constructor(private auth: AuthService, private storage: SessionStorageService) { }
+  constructor(private auth: AuthService, private sessionStorageService: SessionStorageService) { }
 
-  ngOnInit() {
-    if (this.storage.getToken()) {
-      this.isLoggedIn = true;
-      this.roles = this.storage.getAuthorities();
-    }
-  }
+  ngOnInit() { }
 
   onLogin() {
-    if (this.username.invalid) {
+    if (this.isRegistered) {
+      this.isRegistered = false;
+    }
+
+    if (this.username.value.length === 0 || this.username.value.length === 0 ||
+        this.username.invalid || this.password.invalid) {
       return;
     }
 
     this.auth.attemptAuth(new LoginForm(this.username.value, this.password.value)).subscribe(
       data => {
-        this.storage.saveToken(data.jwtToken);
-        this.storage.saveTokenType(data.tokenType);
-        this.storage.saveUsername(data.username);
-        this.storage.saveAuthorities(data.authorities);
+        this.sessionStorageService.setToken(data.jwtToken);
+        this.sessionStorageService.setTokenType(data.tokenType);
+        this.sessionStorageService.setUsername(data.username);
+        this.sessionStorageService.setAuthorities(data.authorities);
 
-        this.isLoggedIn = true;
+        this.password.reset();
         this.isLoginFailed = false;
-        this.roles = this.storage.getAuthorities();
-
-        // TODO emit event instead
-        window.location.reload();
+        this.loggedIn.emit();
       },
       error => {
         console.log(error);
-        this.password.setValue('');
+        this.password.reset();
         this.isLoginFailed = true;
 
         switch (error.status) {
           case 0:
             this.errorMessage = 'Couldnt connect to the server';
             break;
+          case 400:
           case 401:
             this.errorMessage = 'Invalid login or password';
             break;
         }
       }
     );
-  }
-
-  onLogout() {
-    this.storage.clear();
-    this.isLoggedIn = false;
-    // TODO emit event instead
-    window.location.reload();
-  }
-
-  getToken() {
-    return this.storage.getToken();
-  }
-
-  getTokenType() {
-    return this.storage.getTokenType();
-  }
-
-  getUsername() {
-    return this.storage.getUsername();
-  }
-
-  getAuthorities() {
-    return this.storage.getAuthorities();
   }
 }

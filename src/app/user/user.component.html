@@ -1,0 +1,21 @@
+<div id="user-container">
+  <img [@openClose]="isOpen ? 'open' : 'closed'" src="assets/img/user.png" id="user-img">
+
+  <div *ngIf="!isLoggedIn">
+    <mat-tab-group (selectedTabChange)="onSelectedTabChange($event)" [selectedIndex]="selectedTab">
+      <mat-tab label="Login">
+        <app-login (loggedIn)="onLogin()"></app-login>
+      </mat-tab>
+      <mat-tab label="Register">
+        <app-registration (registered)="onRegistered()"></app-registration>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+  <div *ngIf="isLoggedIn">
+    <app-user-details></app-user-details>
+    <div>
+      <button mat-raised-button id="logout-button" (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+</div>
