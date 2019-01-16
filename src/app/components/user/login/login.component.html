@@ -1,0 +1,22 @@
+<form id="login-container">
+
+  <mat-form-field class="login-form">
+    <input matInput placeholder="Username" type="text" [formControl]="username" autocomplete="username">
+    <mat-error *ngIf="username.invalid">Enter username that contains from 4 to 20 characters</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="login-form">
+    <input matInput placeholder="Password" type="password" [formControl]="password" autocomplete="current-password">
+    <mat-error *ngIf="password.invalid">Enter password</mat-error>
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button class="login-form" color="primary" (click)="onLogin()">Submit</button>
+  </div>
+
+  <div *ngIf="isLoginFailed" id="error-message" class="login-form">{{errorMessage}}</div>
+  <div *ngIf="justRegistered" id="registered-message" class="login-form">
+    Account was successfully created, you can now login
+  </div>
+
+</form>

@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import {SessionStorageService} from '../../services/session-storage.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {MatTabChangeEvent} from '@angular/material';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {LoginComponent} from '../login/login.component';
+import {AuthService} from '../../services/auth.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -25,30 +25,36 @@ import {LoginComponent} from '../login/login.component';
     ]),
   ]
 })
-export class UserComponent implements OnInit {
-  @ViewChild(LoginComponent) private loginComponent: LoginComponent;
-  @Output() logged = new EventEmitter<boolean>();
+export class UserComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   selectedTab = 0;
   isOpen = true;
+  private logged: Subscription;
+  private registered: Subscription;
 
-  constructor(private sessionStorageService: SessionStorageService) { }
-
-  ngOnInit() {
-    if (this.sessionStorageService.getToken()) {
-      this.isLoggedIn = true;
-    }
+  constructor(private auth: AuthService) {
   }
 
-  onLogin() {
-    this.isLoggedIn = true;
-    this.logged.emit(this.isLoggedIn);
+  ngOnInit() {
+    this.isLoggedIn = this.auth.isLoggedIn();
+
+    this.logged = this.auth.logged$.subscribe(
+      logged => this.isLoggedIn = logged
+    );
+
+    this.registered = this.auth.registered$.subscribe(
+      () => this.selectedTab = 0
+    );
+  }
+
+  ngOnDestroy() {
+    this.logged.unsubscribe();
+    this.registered.unsubscribe();
   }
 
   onLogout() {
-    this.sessionStorageService.clear();
+    this.auth.logout();
     this.isLoggedIn = false;
-    this.logged.emit(this.isLoggedIn);
   }
 
   onSelectedTabChange(event: MatTabChangeEvent) {
@@ -59,10 +65,5 @@ export class UserComponent implements OnInit {
     } else {
       this.isOpen = false;
     }
-  }
-
-  onRegistered() {
-    this.selectedTab = 0;
-    this.loginComponent.registered = true;
   }
 }

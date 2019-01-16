@@ -1,1 +1,32 @@
-<app-home></app-home>
+<div id="container">
+
+  <mat-toolbar id="toolbar">
+    <div id="title">Online Games</div>
+    <button mat-raised-button id="sidenav-button" (click)="sidenav.toggle()">{{username}}</button>
+  </mat-toolbar>
+
+  <mat-sidenav-container id="sidenav-container">
+
+    <mat-sidenav [style.width]="mobileQuery.matches ? '100%' : '40%'" #sidenav mode="over" position="end"
+                 [opened]="!isLoggedIn">
+      <app-user></app-user>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+
+      <nav mat-tab-nav-bar>
+        <a mat-tab-link routerLink="news" routerLinkActive #rlaNews="routerLinkActive"
+           [active]="rlaNews.isActive">News</a>
+        <a mat-tab-link routerLink="games" routerLinkActive #rlaGames="routerLinkActive"
+           [active]="rlaGames.isActive"
+           [disabled]="!isLoggedIn">Games</a>
+        <a *ngIf="isAdminLoggedIn" mat-tab-link routerLink="admin" routerLinkActive #rlaAdmin="routerLinkActive"
+           [active]="rlaAdmin.isActive">Admin</a>
+      </nav>
+
+      <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

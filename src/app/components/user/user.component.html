@@ -3,12 +3,15 @@
 
   <div *ngIf="!isLoggedIn">
     <mat-tab-group (selectedTabChange)="onSelectedTabChange($event)" [selectedIndex]="selectedTab">
+
       <mat-tab label="Login">
-        <app-login (loggedIn)="onLogin()"></app-login>
+        <app-login></app-login>
       </mat-tab>
+
       <mat-tab label="Register">
-        <app-registration (registered)="onRegistered()"></app-registration>
+        <app-registration></app-registration>
       </mat-tab>
+
     </mat-tab-group>
   </div>
 

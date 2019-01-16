@@ -8,7 +8,8 @@ const TOKEN_HEADER_KEY = 'Authorization';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private sessionStorageService: SessionStorageService) { }
+  constructor(private sessionStorageService: SessionStorageService) {
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let authReq = req;
@@ -16,7 +17,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const token = this.sessionStorageService.getToken();
     if (token) {
       const tokenType = this.sessionStorageService.getTokenType();
-      authReq = req.clone({ headers: authReq.headers.set(TOKEN_HEADER_KEY, tokenType + ' ' + token) });
+      authReq = req.clone({headers: authReq.headers.set(TOKEN_HEADER_KEY, tokenType + ' ' + token)});
     }
 
     return next.handle(authReq);

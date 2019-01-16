@@ -1,0 +1,13 @@
+.login-form {
+  width: 50%;
+  display: block;
+  margin: 20px auto 20px auto;
+}
+
+#error-message {
+  color: red;
+}
+
+#registered-message {
+  color: lightgreen;
+}

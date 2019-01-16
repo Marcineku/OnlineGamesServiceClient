@@ -3,7 +3,7 @@
   margin: 10% auto 10% auto;
 }
 
-::ng-deep #user-container .mat-tab-labels{
+::ng-deep #user-container .mat-tab-labels {
   justify-content: center;
 }
 
