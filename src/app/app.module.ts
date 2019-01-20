@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './components/user/login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatNativeDateModule} from '@angular/material';
+import {MatNativeDateModule} from '@angular/material';
 import {MaterialModule} from '../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/user.component';

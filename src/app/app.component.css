@@ -9,8 +9,12 @@
 }
 
 #title {
-  flex: 1 1 auto;
-  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
 }
 
 #sidenav-button {
@@ -20,4 +24,16 @@
 
 #sidenav-container {
   height: 100%;
+}
+
+.status-connecting {
+  color: yellow;
+}
+
+.status-open {
+  color: lightgreen;
+}
+
+.status-closed {
+  color: red;
 }

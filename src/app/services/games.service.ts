@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {TicTacToeDTO} from '../request-bodies/tic-tac-toe-d-t-o';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 export interface TicTacToeGameDTOResponse {
@@ -31,6 +31,8 @@ export class GamesService {
   createGame(gameDto: TicTacToeDTO): Observable<TicTacToeGameDTOResponse> {
     return this.http.post<TicTacToeGameDTOResponse>('games/tictactoe', gameDto, {headers: httpHeaders}).pipe(
       tap(res => {
+        console.log('User has created new game', res);
+
         this.router.navigate([`/games/tic-tac-toe/${res.gameId}`]).then(
           () => {
             console.log(`Navigating to '/games/tic-tac-toe/${res.gameId}'`);
@@ -38,11 +40,33 @@ export class GamesService {
           reason => {
             console.error(`Navigating to '/games/tic-tac-toe/${res.gameId}' failed`, reason);
           });
+      }),
+      catchError(err => {
+        console.error(`User couldn't create new game`, err);
+        return throwError(err);
       })
     );
   }
 
   getAvailableGames(): Observable<TicTacToeGameDTOResponse[]> {
     return this.http.get<TicTacToeGameDTOResponse[]>('games/tictactoe/list');
+  }
+
+  getUserActiveGames(): Observable<TicTacToeGameDTOResponse[]> {
+    return this.http.get<TicTacToeGameDTOResponse[]>('games/tictactoe/games/active').pipe(
+      tap(res => {
+        if (res && res.length > 0) {
+          console.log('User has active game pending');
+
+          this.router.navigate([`/games/tic-tac-toe/${res[0].gameId}`]).then(
+            () => {
+              console.log(`Navigating to '/games/tic-tac-toe/${res[0].gameId}'`);
+            },
+            reason => {
+              console.error(`Navigating to '/games/tic-tac-toe/${res[0].gameId}' failed`, reason);
+            });
+        }
+      })
+    );
   }
 }

@@ -1,5 +1,28 @@
 <mat-grid-list cols="4" rowHeight="fit">
-  <mat-grid-tile [colspan]="1">
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <form>
+      <mat-form-field class="games-creation-form">
+        <input (keyup)="onUsernameFilterUpdate()" matInput placeholder="Filter by username" [(ngModel)]="usernameFilter"
+               name="usernameFilter">
+      </mat-form-field>
+    </form>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="3" [rowspan]="3">
+    <cdk-virtual-scroll-viewport itemSize="50" class="games-viewport">
+      <mat-list *cdkVirtualFor="let game of games$">
+        <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
+                       matTooltipPosition="before">
+          <a mat-stroked-button [routerLink]="game.gameId">
+            <p style="font-size: 0.7em; opacity: 0.5;" mat-line>{{game.firstPlayer}} ({{game.firstPlayerPieceCode}})</p>
+            <p style="height: auto" mat-line>Id: {{game.gameId}} Status: {{game.gameStatus}}</p>
+          </a>
+        </mat-list-item>
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
     <form>
       <mat-form-field class="games-creation-form">
         <mat-select placeholder="Game type" [formControl]="gameTypes">
@@ -18,19 +41,8 @@
       <button mat-raised-button class="games-creation-form" color="primary" (click)="createNewGame()">
         Create game
       </button>
+
+      <div *ngIf="isCreatingGameError" id="error-message" class="games-creation-form">{{errorMessage}}</div>
     </form>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="3">
-    <cdk-virtual-scroll-viewport itemSize="50" class="games-viewport">
-      <mat-list *cdkVirtualFor="let game of games$">
-        <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
-                       matTooltipPosition="before">
-          <a mat-stroked-button [routerLink]="game.gameId">
-            <p style="font-size: 0.7em; opacity: 0.5;" mat-line>{{game.firstPlayer}} ({{game.firstPlayerPieceCode}})</p>
-            <p style="height: auto" mat-line>Id: {{game.gameId}} Status: {{game.gameStatus}}</p>
-          </a>
-        </mat-list-item>
-      </mat-list>
-    </cdk-virtual-scroll-viewport>
   </mat-grid-tile>
 </mat-grid-list>

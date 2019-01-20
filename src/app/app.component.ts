@@ -15,9 +15,11 @@ export class AppComponent implements OnInit, OnDestroy {
   username: string;
   isLoggedIn: boolean;
   isAdminLoggedIn: boolean;
+  stompState: string;
   private mobileQueryListener;
   private logged: Subscription;
   private stompErrors: Subscription;
+  private stompConnectionState: Subscription;
 
   constructor(private sessionStorage: SessionStorageService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -33,6 +35,12 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this.auth.isLoggedIn()) {
           this.auth.logout();
         }
+      }
+    );
+
+    this.stompConnectionState = this.stomp.getConnectionState().subscribe(
+      res => {
+        this.stompState = res;
       }
     );
 
@@ -52,7 +60,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeEventListener('mobileQueryListener', this.mobileQueryListener());
     this.logged.unsubscribe();
     this.stomp.disconnect();
-    this.stomp.getConnectionErrors();
+    this.stompErrors.unsubscribe();
+    this.stompConnectionState.unsubscribe();
   }
 
   private onLogged(logged: boolean) {

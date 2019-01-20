@@ -1,6 +1,7 @@
 <div id="container">
 
   <mat-toolbar id="toolbar">
+    <div>Status: <span [ngClass]="'status-' + stompState.toLowerCase()">{{stompState}}</span></div>
     <div id="title">Online Games</div>
     <button mat-raised-button id="sidenav-button" (click)="sidenav.toggle()">{{username}}</button>
   </mat-toolbar>
