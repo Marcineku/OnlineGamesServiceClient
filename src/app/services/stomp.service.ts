@@ -15,10 +15,10 @@ const rxStompConfig: InjectableRxStompConfig = {
   connectHeaders: {},
   heartbeatIncoming: 0,
   heartbeatOutgoing: 20000,
-  reconnectDelay: 200,
-  /*debug: (msg: string): void => {
-    console.log(new Date(), msg);
-  }*/
+  reconnectDelay: 2000,
+  debug: (msg: string): void => {
+    console.log(msg);
+  }
 };
 
 @Injectable({
@@ -39,6 +39,10 @@ export class StompService {
     };
     this.rxStompService.configure(rxStompConfig);
     this.rxStompService.activate();
+  }
+
+  getConnectionErrors(): Observable<any> {
+    return this.rxStompService.stompErrors$.asObservable();
   }
 
   disconnect() {

@@ -62,6 +62,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           case 401:
             this.errorMessage = 'Invalid login or password';
             break;
+          case 500:
+            this.errorMessage = 'This user is already logged in';
+            break;
         }
       },
       () => {

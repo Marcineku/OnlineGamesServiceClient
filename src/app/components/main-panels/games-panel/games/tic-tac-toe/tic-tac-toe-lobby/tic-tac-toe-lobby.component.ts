@@ -4,6 +4,7 @@ import {TicTacToeDTO} from '../../../../../../request-bodies/tic-tac-toe-d-t-o';
 import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 import {ChatMessage} from '../../../../../../services/stomp.service';
 import {Subject} from 'rxjs';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-tic-tac-toe-lobby',
@@ -11,11 +12,13 @@ import {Subject} from 'rxjs';
   styleUrls: ['./tic-tac-toe-lobby.component.css']
 })
 export class TicTacToeLobbyComponent implements OnInit {
-  @ViewChild(CdkVirtualScrollViewport)
-  virtualScrollViewport: CdkVirtualScrollViewport;
   private gamesList: TicTacToeGameDTOResponse[] = [];
   private games = new Subject<TicTacToeGameDTOResponse[]>();
   games$ = this.games.asObservable();
+  gameTypes = new FormControl('', [Validators.required]);
+  gameTypesList: string[] = ['Singleplayer', 'Multiplayer'];
+  pieceCodes = new FormControl('', [Validators.required]);
+  pieceCodesList: string[] = ['X', 'O'];
 
   constructor(private gamesService: GamesService) {
   }
@@ -29,7 +32,12 @@ export class TicTacToeLobbyComponent implements OnInit {
     );
   }
 
-  createNewGame(gameType: string, pieceCode: string) {
-    this.gamesService.createGame(new TicTacToeDTO(gameType, pieceCode)).subscribe();
+  createNewGame() {
+    if (this.gameTypes.value.length === 0 || this.pieceCodes.value.length === 0 ||
+        this.gameTypes.invalid || this.pieceCodes.invalid) {
+      return;
+    }
+
+    this.gamesService.createGame(new TicTacToeDTO(this.gameTypes.value, this.pieceCodes.value)).subscribe();
   }
 }

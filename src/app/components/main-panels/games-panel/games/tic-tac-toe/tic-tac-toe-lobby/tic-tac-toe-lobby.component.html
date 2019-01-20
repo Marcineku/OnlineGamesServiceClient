@@ -1,17 +1,26 @@
-<div id="games-container">
-  <form>
-    <mat-form-field>
-      <input matInput placeholder="Game type" type="text" #gameType>
-    </mat-form-field>
-  </form>
-  <form>
-    <mat-form-field>
-      <input matInput placeholder="Piece code" type="text" #pieceCode>
-    </mat-form-field>
-  </form>
-  <button mat-raised-button (click)="createNewGame(gameType.value, pieceCode.value)">Create new game</button>
+<mat-grid-list cols="4" rowHeight="fit">
+  <mat-grid-tile [colspan]="1">
+    <form>
+      <mat-form-field class="games-creation-form">
+        <mat-select placeholder="Game type" [formControl]="gameTypes">
+          <mat-option *ngFor="let gameType of gameTypesList" [value]="gameType">{{gameType}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="gameTypes.invalid">Choose game type</mat-error>
+      </mat-form-field>
 
-  <div>
+      <mat-form-field class="games-creation-form">
+        <mat-select placeholder="Circle or cross" [formControl]="pieceCodes">
+          <mat-option *ngFor="let pieceCode of pieceCodesList" [value]="pieceCode">{{pieceCode}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="pieceCodes.invalid">Choose piece code</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button class="games-creation-form" color="primary" (click)="createNewGame()">
+        Create game
+      </button>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3">
     <cdk-virtual-scroll-viewport itemSize="50" class="games-viewport">
       <mat-list *cdkVirtualFor="let game of games$">
         <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
@@ -23,5 +32,5 @@
         </mat-list-item>
       </mat-list>
     </cdk-virtual-scroll-viewport>
-  </div>
-</div>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -17,6 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
   isAdminLoggedIn: boolean;
   private mobileQueryListener;
   private logged: Subscription;
+  private stompErrors: Subscription;
 
   constructor(private sessionStorage: SessionStorageService,
               private changeDetectorRef: ChangeDetectorRef,
@@ -26,6 +27,15 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.stompErrors = this.stomp.getConnectionErrors().subscribe(
+      () => {
+        this.stomp.disconnect();
+        if (this.auth.isLoggedIn()) {
+          this.auth.logout();
+        }
+      }
+    );
+
     this.onLogged(this.auth.isLoggedIn());
 
     this.logged = this.auth.logged$.subscribe(
@@ -42,6 +52,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeEventListener('mobileQueryListener', this.mobileQueryListener());
     this.logged.unsubscribe();
     this.stomp.disconnect();
+    this.stomp.getConnectionErrors();
   }
 
   private onLogged(logged: boolean) {

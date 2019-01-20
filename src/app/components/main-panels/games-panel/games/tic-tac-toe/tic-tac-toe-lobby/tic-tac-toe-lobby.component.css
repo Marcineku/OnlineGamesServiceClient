@@ -1,11 +1,21 @@
 .games-viewport {
-  height: 400px;
-  width: 40%;
+  width: 70vw;
+  height: 80vh;
   border: 1px solid #666666;
 }
 
 a {
   width: 100%;
+}
+
+.games-creation-form {
+  width: 20vw;
+  display: block;
+  margin: 20px auto 20px auto;
+}
+
+#error-message {
+  color: red;
 }
 
 ::ng-deep .mat-list .mat-list-item .mat-line {
@@ -15,4 +25,8 @@ a {
 
 ::ng-deep .mat-list .mat-list-item {
   height:initial!important;
+}
+
+mat-grid-list {
+  height: 86vh;
 }
