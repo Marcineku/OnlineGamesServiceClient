@@ -1,52 +1,49 @@
-import {Component, OnInit} from '@angular/core';
-import * as SockJS from 'sockjs-client';
-import * as Stomp from 'stompjs';
-import {Frame} from 'stompjs';
-import * as $ from 'jquery';
+import {Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChatMessage, StompService} from '../../../../services/stomp.service';
+import {Subject, Subscription} from 'rxjs';
 import {SessionStorageService} from '../../../../services/session-storage.service';
+import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit {
-  private serverUrl = 'http://localhost:8080/socket';
-  private stompClient;
+export class ChatComponent implements OnInit, OnDestroy {
+  @ViewChild(CdkVirtualScrollViewport)
+  virtualScrollViewport: CdkVirtualScrollViewport;
+  @Input() gameId: number;
+  message = '';
+  username: string;
+  private messagesList: ChatMessage[] = [];
+  private messages = new Subject<ChatMessage[]>();
+  messages$ = this.messages.asObservable();
+  private chat: Subscription;
 
-  constructor(private sessionStorageSevice: SessionStorageService) {
+  constructor(private stomp: StompService,
+              private sessionStorage: SessionStorageService) {
   }
 
   ngOnInit() {
+    this.chat = this.stomp.watchChat(this.gameId).subscribe(
+      res => {
+        this.messagesList.push(res);
+        this.messages.next(this.messagesList);
+        this.virtualScrollViewport.scrollTo({bottom: 0});
+      }
+    );
+
+    this.username = this.sessionStorage.getUsername();
   }
 
-  onConnect() {
-    this.initializeWebSocketConnection();
+  ngOnDestroy() {
+    this.chat.unsubscribe();
   }
 
-  sendMessage(message) {
-    this.stompClient.send('/app/send/message', {}, message);
-    $('#input').val('');
-  }
-
-  private initializeWebSocketConnection() {
-    const ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    const that = this;
-    const tokenType = this.sessionStorageSevice.getTokenType();
-    const token = this.sessionStorageSevice.getToken();
-    this.stompClient.connect({Authorization: tokenType + ' ' + token},
-      function (frame: Frame) {
-        // console.log(frame);
-        that.stompClient.subscribe('/chat', (message) => {
-          if (message.body) {
-            $('.chat').append(`<div class='message'>${message.body}</div>`);
-            console.log(message.body);
-          }
-        });
-      },
-      function (any: any) {
-        console.log(any);
-      });
+  sendMessage() {
+    if (this.message.length > 0) {
+      this.stomp.sendChatMessage(this.message);
+      this.message = '';
+    }
   }
 }

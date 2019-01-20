@@ -1,17 +1,1 @@
-<div id="games-container">
-  <form>
-    <mat-form-field>
-      <input matInput placeholder="Game type" type="text" #gameType>
-    </mat-form-field>
-  </form>
-  <form>
-    <mat-form-field>
-      <input matInput placeholder="Piece code" type="text" #pieceCode>
-    </mat-form-field>
-  </form>
-  <button mat-raised-button (click)="createNewGame(gameType.value, pieceCode.value)">Create new game</button>
-  <div>
-    {{gameInfo}}
-  </div>
-  <app-chat></app-chat>
-</div>
+<router-outlet></router-outlet>

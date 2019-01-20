@@ -4,7 +4,7 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './components/user/login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatNativeDateModule} from '@angular/material';
+import {MatButtonModule, MatNativeDateModule} from '@angular/material';
 import {MaterialModule} from '../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {UserComponent} from './components/user/user.component';
@@ -20,6 +20,8 @@ import {AppRoutingModule} from './routing/app-routing.module';
 import {ChatComponent} from './components/main-panels/games-panel/chat/chat.component';
 import {GamesPanelRoutingModule} from './routing/games-panel-routing.module';
 import {GamesListComponent} from './components/main-panels/games-panel/games-list/games-list.component';
+import {TicTacToeGameComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component';
+import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import {GamesListComponent} from './components/main-panels/games-panel/games-lis
     TicTacToeComponent,
     GamesPanelComponent,
     NewsPanelComponent,
-    GamesListComponent
+    GamesListComponent,
+    TicTacToeGameComponent,
+    TicTacToeLobbyComponent
   ],
   imports: [
     BrowserModule,

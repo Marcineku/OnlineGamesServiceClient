@@ -3,6 +3,7 @@ import {SessionStorageService} from './services/session-storage.service';
 import {MediaMatcher} from '@angular/cdk/layout';
 import {AuthService} from './services/auth.service';
 import {Subscription} from 'rxjs';
+import {StompService} from './services/stomp.service';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +21,12 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private sessionStorage: SessionStorageService,
               private changeDetectorRef: ChangeDetectorRef,
               private media: MediaMatcher,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private stomp: StompService) {
   }
 
   ngOnInit() {
-    if (this.auth.isLoggedIn()) {
-      this.onLogged(true);
-    } else {
-      this.onLogged(false);
-    }
+    this.onLogged(this.auth.isLoggedIn());
 
     this.logged = this.auth.logged$.subscribe(
       logged => {
@@ -43,6 +41,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.mobileQuery.removeEventListener('mobileQueryListener', this.mobileQueryListener());
     this.logged.unsubscribe();
+    this.stomp.disconnect();
   }
 
   private onLogged(logged: boolean) {
@@ -51,8 +50,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
     if (this.isLoggedIn) {
       this.username = this.sessionStorage.getUsername();
+      this.stomp.connect();
     } else {
       this.username = 'User';
+      this.stomp.disconnect();
     }
   }
 }

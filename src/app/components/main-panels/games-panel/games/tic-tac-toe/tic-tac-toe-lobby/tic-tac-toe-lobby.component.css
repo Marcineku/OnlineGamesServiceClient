@@ -1,23 +1,11 @@
-.messages-viewport {
+.games-viewport {
   height: 400px;
   width: 40%;
   border: 1px solid #666666;
 }
 
-.message-item {
-  margin-bottom: 20px;
-}
-
-.message-user {
-  text-align: right;
-}
-
-.message-input {
-  width: 30%;
-}
-
-.message-button {
-  width: 10%;
+a {
+  width: 100%;
 }
 
 ::ng-deep .mat-list .mat-list-item .mat-line {

@@ -4,6 +4,8 @@ import {GamesPanelComponent} from '../components/main-panels/games-panel/games-p
 import {TicTacToeComponent} from '../components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe.component';
 import {GamesListComponent} from '../components/main-panels/games-panel/games-list/games-list.component';
 import {AuthGuard} from '../guards/auth.guard';
+import {TicTacToeLobbyComponent} from '../components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component';
+import {TicTacToeGameComponent} from '../components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component';
 
 const routes: Routes = [
   {
@@ -17,7 +19,17 @@ const routes: Routes = [
       },
       {
         path: 'tic-tac-toe',
-        component: TicTacToeComponent
+        component: TicTacToeComponent,
+        children: [
+          {
+            path: '',
+            component: TicTacToeLobbyComponent
+          },
+          {
+            path: ':id',
+            component: TicTacToeGameComponent
+          }
+        ]
       }
     ]
   }

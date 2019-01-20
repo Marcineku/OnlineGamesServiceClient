@@ -1,0 +1,27 @@
+<div id="games-container">
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Game type" type="text" #gameType>
+    </mat-form-field>
+  </form>
+  <form>
+    <mat-form-field>
+      <input matInput placeholder="Piece code" type="text" #pieceCode>
+    </mat-form-field>
+  </form>
+  <button mat-raised-button (click)="createNewGame(gameType.value, pieceCode.value)">Create new game</button>
+
+  <div>
+    <cdk-virtual-scroll-viewport itemSize="50" class="games-viewport">
+      <mat-list *cdkVirtualFor="let game of games$">
+        <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
+                       matTooltipPosition="before">
+          <a mat-stroked-button [routerLink]="game.gameId">
+            <p style="font-size: 0.7em; opacity: 0.5;" mat-line>{{game.firstPlayer}} ({{game.firstPlayerPieceCode}})</p>
+            <p style="height: auto" mat-line>Id: {{game.gameId}} Status: {{game.gameStatus}}</p>
+          </a>
+        </mat-list-item>
+      </mat-list>
+    </cdk-virtual-scroll-viewport>
+  </div>
+</div>
