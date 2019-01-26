@@ -15,6 +15,15 @@ export interface TicTacToeGameDTOResponse {
   gameStatus: string;
 }
 
+export interface TicTacToeGameState {
+  gameId: number;
+  gameStatus: string;
+  gameFields: number[];
+  userTurn: string;
+  firstUser: string;
+  secondUser: string;
+}
+
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
@@ -33,7 +42,7 @@ export class GamesService {
       tap(res => {
         console.log('User has created new game', res);
 
-        this.router.navigate([`/games/tic-tac-toe/${res.gameId}`, {owner: true}]).then(
+        this.router.navigate([`/games/tic-tac-toe/${res.gameId}`]).then(
           () => {
             console.log(`Navigating to '/games/tic-tac-toe/${res.gameId}'`);
           },
@@ -91,7 +100,7 @@ export class GamesService {
         if (res && res.length > 0) {
           console.log('User has active game pending');
 
-          this.router.navigate([`/games/tic-tac-toe/${res[0].gameId}`, {owner: true}]).then(
+          this.router.navigate([`/games/tic-tac-toe/${res[0].gameId}`]).then(
             () => {
               console.log(`Navigating to '/games/tic-tac-toe/${res[0].gameId}'`);
             },
@@ -101,5 +110,13 @@ export class GamesService {
         }
       })
     );
+  }
+
+  getGameInfo(gameId: number): Observable<TicTacToeGameDTOResponse> {
+    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/${gameId}`);
+  }
+
+  getGameState(gameId: number): Observable<TicTacToeGameState> {
+    return this.http.get<TicTacToeGameState>(`games/tictactoe/state/${gameId}`);
   }
 }

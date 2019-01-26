@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {RxStompState} from '@stomp/rx-stomp';
 import {IFrame} from '@stomp/stompjs';
-import {TicTacToeGameDTOResponse} from './games.service';
+import {TicTacToeGameDTOResponse, TicTacToeGameState} from './games.service';
 
 export interface ChatMessage {
   username: string;
@@ -60,7 +60,14 @@ export class StompService {
 
   watchChat(gameId: number): Observable<ChatMessage> {
     this.gameId = gameId;
-    return this.rxStompService.watch(`/chat/${this.gameId}`).pipe(
+    return this.rxStompService.watch(`/chat/${gameId}`).pipe(
+      map(message => JSON.parse(message.body))
+    );
+  }
+
+  watchMoves(gameId: number): Observable<TicTacToeGameState> {
+    this.gameId = gameId;
+    return this.rxStompService.watch(`/move/${gameId}`).pipe(
       map(message => JSON.parse(message.body))
     );
   }
@@ -79,5 +86,9 @@ export class StompService {
 
   sendChatMessage(message: string) {
     this.rxStompService.publish({destination: `/app/send/message/${this.gameId}`, body: message});
+  }
+
+  sendMove(move: number) {
+    this.rxStompService.publish({destination: `/app/send/move/${this.gameId}`, body: move.toString(10)});
   }
 }

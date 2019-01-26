@@ -1,7 +1,8 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {GamesService, TicTacToeGameDTOResponse} from '../../../../../../services/games.service';
+import {GamesService, TicTacToeGameDTOResponse, TicTacToeGameState} from '../../../../../../services/games.service';
+import {SessionStorageService} from '../../../../../../services/session-storage.service';
 import {StompService} from '../../../../../../services/stomp.service';
 
 @Component({
@@ -14,35 +15,78 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   isOwner: boolean;
   @ViewChild('game') svg: ElementRef;
   board: Board;
+  gameInfo: TicTacToeGameDTOResponse;
+  gameState: TicTacToeGameState;
   private paramMap$: Subscription;
-  gameState: TicTacToeGameDTOResponse;
   private updatedGames: Subscription;
+  private moves: Subscription;
 
   constructor(private route: ActivatedRoute,
               private gamesService: GamesService,
-              private stomp: StompService) {
+              private stomp: StompService,
+              private sessionStorage: SessionStorageService) {
   }
 
   ngOnInit() {
+    const username = this.sessionStorage.getUsername();
+
     this.paramMap$ = this.route.paramMap.subscribe(
       params => {
         this.gameId = +params.get('id');
-        this.isOwner = (params.get('owner') === 'true');
       }
     );
 
-    if (!this.isOwner) {
-      this.gamesService.joinGame(this.gameId).subscribe(
-        res => {
-          this.gameState = res;
+    this.gamesService.getGameInfo(this.gameId).subscribe(
+      res => {
+        this.gameInfo = res;
+        this.isOwner = res.firstPlayer === username;
+        if (!this.isOwner) {
+          this.gamesService.joinGame(this.gameId).subscribe();
         }
-      );
-    }
+
+        if (this.gameInfo.gameStatus === 'IN_PROGRESS') {
+          this.gamesService.getGameState(this.gameId).subscribe(
+            res2 => {
+              this.gameState = res2;
+            }
+          );
+        }
+      }
+    );
 
     this.updatedGames = this.stomp.watchUpdatedGames().subscribe(
       res => {
         if (res.gameId === this.gameId) {
-          this.gameState = res;
+          this.gameInfo = res;
+        }
+      }
+    );
+
+    this.moves = this.stomp.watchMoves(this.gameId).subscribe(
+      res => {
+        this.gameState = res;
+
+        for (let i = 0; i < res.gameFields.length; ++i) {
+          const field = this.board.getField(i);
+          switch (res.gameFields[i]) {
+            case 0:
+              field.fieldState = FieldState.Empty;
+              break;
+            case 1:
+              if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
+                field.fieldState = FieldState.Cross;
+              } else {
+                field.fieldState = FieldState.Circle;
+              }
+              break;
+            case 2:
+              if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
+                field.fieldState = FieldState.Circle;
+              } else {
+                field.fieldState = FieldState.Cross;
+              }
+              break;
+          }
         }
       }
     );
@@ -61,6 +105,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   ngOnDestroy() {
     this.paramMap$.unsubscribe();
     this.updatedGames.unsubscribe();
+    this.moves.unsubscribe();
   }
 
   @HostListener('window:resize')
@@ -71,20 +116,13 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   onFieldClick(fieldNo: number) {
-    const field = this.board.getField(fieldNo);
-
-    const width = this.svg.nativeElement.getBoundingClientRect().width;
-    const height = this.svg.nativeElement.getBoundingClientRect().height;
-    this.board.drawFields(width, height);
+    this.stomp.sendMove(fieldNo);
   }
 
   onGameStart() {
     this.gamesService.startGame(this.gameId).subscribe(
       res => {
-        this.gameState = res;
-      },
-      err => {
-
+        this.gameInfo = res;
       }
     );
   }

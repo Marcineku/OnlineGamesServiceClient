@@ -49,8 +49,14 @@
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <button mat-raised-button color="primary" [disabled]="gameState ? gameState.secondPlayer === null : false">Start</button>
-    <button mat-raised-button color="primary">Abandon</button>
+    <p *ngIf="gameInfo">Game status: {{gameInfo.gameStatus}}</p>
+    <div *ngIf="isOwner">
+      <button mat-raised-button color="primary" (click)="onGameStart()"
+              [disabled]="gameInfo ? gameInfo.secondPlayer === null || gameInfo.gameStatus != 'WAITING_FOR_PLAYER' : false">
+        Start
+      </button>
+      <button mat-raised-button color="primary">Abandon</button>
+    </div>
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="1" [rowspan]="3">

@@ -2,10 +2,12 @@ mat-grid-list {
   height: 85vh;
 }
 
-button {
+button, p {
   width: 10vw;
   display: block;
   margin: 20px 35px 20px 35px;
+
+  word-break: break-all;
 }
 
 svg {
