@@ -49,7 +49,8 @@
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="1" [rowspan]="1">
-    <p *ngIf="gameInfo">Game status: {{gameInfo.gameStatus}}</p>
+    <p *ngIf="gameInfo && !gameState">Game status: {{gameInfo.gameStatus}}</p>
+    <p *ngIf="gameState">Game status: {{gameState.gameStatus}}</p>
     <div *ngIf="isOwner">
       <button mat-raised-button color="primary" (click)="onGameStart()"
               [disabled]="gameInfo ? gameInfo.secondPlayer === null || gameInfo.gameStatus != 'WAITING_FOR_PLAYER' : false">

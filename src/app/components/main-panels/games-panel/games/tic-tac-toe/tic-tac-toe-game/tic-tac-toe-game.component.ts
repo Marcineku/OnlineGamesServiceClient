@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {GamesService, TicTacToeGameDTOResponse, TicTacToeGameState} from '../../../../../../services/games.service';
 import {SessionStorageService} from '../../../../../../services/session-storage.service';
@@ -16,19 +16,21 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   @ViewChild('game') svg: ElementRef;
   board: Board;
   gameInfo: TicTacToeGameDTOResponse;
-  gameState: TicTacToeGameState;
+  gameState: TicTacToeGameState = null;
   private paramMap$: Subscription;
   private updatedGames: Subscription;
   private moves: Subscription;
+  private username;
 
   constructor(private route: ActivatedRoute,
               private gamesService: GamesService,
               private stomp: StompService,
-              private sessionStorage: SessionStorageService) {
+              private sessionStorage: SessionStorageService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    const username = this.sessionStorage.getUsername();
+    this.username = this.sessionStorage.getUsername();
 
     this.paramMap$ = this.route.paramMap.subscribe(
       params => {
@@ -39,15 +41,25 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
     this.gamesService.getGameInfo(this.gameId).subscribe(
       res => {
         this.gameInfo = res;
-        this.isOwner = res.firstPlayer === username;
+        this.isOwner = res.firstPlayer === this.username;
         if (!this.isOwner) {
           this.gamesService.joinGame(this.gameId).subscribe();
+        } else if (res.gameStatus !== 'IN_PROGRESS' &&
+                   res.gameStatus !== 'WAITING_FOR_PLAYER') {
+          this.router.navigate([`/games/tic-tac-toe`]).then(
+            () => {
+              console.log(`Navigating to '/games/tic-tac-toe'`);
+            },
+            reason => {
+              console.error(`Navigating to '/games/tic-tac-toe' failed`, reason);
+            });
         }
 
         if (this.gameInfo.gameStatus === 'IN_PROGRESS') {
           this.gamesService.getGameState(this.gameId).subscribe(
             res2 => {
               this.gameState = res2;
+              this.setBoardState();
             }
           );
         }
@@ -65,29 +77,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
     this.moves = this.stomp.watchMoves(this.gameId).subscribe(
       res => {
         this.gameState = res;
-
-        for (let i = 0; i < res.gameFields.length; ++i) {
-          const field = this.board.getField(i);
-          switch (res.gameFields[i]) {
-            case 0:
-              field.fieldState = FieldState.Empty;
-              break;
-            case 1:
-              if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
-                field.fieldState = FieldState.Cross;
-              } else {
-                field.fieldState = FieldState.Circle;
-              }
-              break;
-            case 2:
-              if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
-                field.fieldState = FieldState.Circle;
-              } else {
-                field.fieldState = FieldState.Cross;
-              }
-              break;
-          }
-        }
+        this.setBoardState();
       }
     );
 
@@ -116,6 +106,14 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 
   onFieldClick(fieldNo: number) {
+    const field = this.board.getField(fieldNo);
+    if (this.gameState === null ||
+        this.gameState.gameStatus !== 'IN_PROGRESS' ||
+        field.fieldState !== FieldState.Empty ||
+        this.gameState.userTurn !== this.username) {
+      return;
+    }
+
     this.stomp.sendMove(fieldNo);
   }
 
@@ -125,6 +123,31 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
         this.gameInfo = res;
       }
     );
+  }
+
+  private setBoardState() {
+    for (let i = 0; i < this.gameState.gameFields.length; ++i) {
+      const field = this.board.getField(i);
+      switch (this.gameState.gameFields[i]) {
+        case 0:
+          field.fieldState = FieldState.Empty;
+          break;
+        case 1:
+          if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
+            field.fieldState = FieldState.Cross;
+          } else {
+            field.fieldState = FieldState.Circle;
+          }
+          break;
+        case 2:
+          if (this.gameInfo.firstPlayerPieceCode.toLowerCase() === 'x') {
+            field.fieldState = FieldState.Circle;
+          } else {
+            field.fieldState = FieldState.Cross;
+          }
+          break;
+      }
+    }
   }
 }
 
