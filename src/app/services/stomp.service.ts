@@ -7,7 +7,7 @@ import {RxStompState} from '@stomp/rx-stomp';
 import {IFrame} from '@stomp/stompjs';
 import {TicTacToeGameDTOResponse, TicTacToeGameState} from './games.service';
 
-export interface ChatMessage {
+export class ChatMessage {
   username: string;
   message: string;
   date: Date;
@@ -81,6 +81,12 @@ export class StompService {
   watchUpdatedGames(): Observable<TicTacToeGameDTOResponse> {
     return this.rxStompService.watch(`/tictactoe/update`).pipe(
       map(message => JSON.parse(message.body))
+    );
+  }
+
+  watchDeletedGames(): Observable<number> {
+    return this.rxStompService.watch(`/tictactoe/delete`).pipe(
+      map(message => parseInt(message.body, 10))
     );
   }
 

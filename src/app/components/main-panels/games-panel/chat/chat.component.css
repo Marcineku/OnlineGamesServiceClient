@@ -12,6 +12,11 @@
   text-align: right;
 }
 
+.message-info {
+  text-align: right;
+  opacity: 0.6;
+}
+
 .message-input {
   width: 20vw;
 }

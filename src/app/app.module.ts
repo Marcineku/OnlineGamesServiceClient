@@ -22,6 +22,7 @@ import {GamesPanelRoutingModule} from './routing/games-panel-routing.module';
 import {GamesListComponent} from './components/main-panels/games-panel/games-list/games-list.component';
 import {TicTacToeGameComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component';
 import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component';
+import {TicTacToeDialogComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-dialog/tic-tac-toe-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/game
     NewsPanelComponent,
     GamesListComponent,
     TicTacToeGameComponent,
-    TicTacToeLobbyComponent
+    TicTacToeLobbyComponent,
+    TicTacToeDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/game
     apiInterceptorProvider,
     tokenInterceptorProvider
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TicTacToeGameComponent, TicTacToeDialogComponent]
 })
 export class AppModule {
 }

@@ -3,7 +3,8 @@
     <mat-list *cdkVirtualFor="let msg of messages$">
       <mat-list-item class="message-item" [matTooltip]="msg.date | date: 'hh:mm:ss'"
                      matTooltipPosition="before"
-                     [class.message-user]="username === msg.username">
+                     [class.message-user]="username === msg.username"
+                     [class.message-info]="msg.username.toLowerCase() === 'info'">
         <p style="font-size: 0.7em; opacity: 0.5;" mat-line>{{msg.username}}</p>
         <p style="height: auto" class="message-text" mat-line>{{msg.message}}</p>
       </mat-list-item>

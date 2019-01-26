@@ -90,6 +90,26 @@ export class GamesService {
     );
   }
 
+  abandonGame() {
+    return this.http.delete('games/tictactoe/abandon').pipe(
+      tap(() => {
+        console.log(`User has abandoned game`);
+
+        this.router.navigate([`/games/tic-tac-toe`]).then(
+          () => {
+            console.log(`Navigating to '/games/tic-tac-toe'`);
+          },
+          reason => {
+            console.error(`Navigating to '/games/tic-tac-toe' failed`, reason);
+          });
+      }),
+      catchError(err => {
+        console.error(`User couldn't abandon game`, err);
+        return throwError(err);
+      })
+    );
+  }
+
   getAvailableGames(): Observable<TicTacToeGameDTOResponse[]> {
     return this.http.get<TicTacToeGameDTOResponse[]>('games/tictactoe/list');
   }

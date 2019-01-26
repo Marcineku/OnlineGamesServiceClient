@@ -13,7 +13,7 @@
       <mat-list *cdkVirtualFor="let game of games$">
         <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
                        matTooltipPosition="before">
-          <a [routerLink]="[game.gameId]" class="game-element" [disabled]="game.secondPlayer"
+          <a [routerLink]="game.secondPlayer ? [] : [game.gameId]" class="game-element" [disabled]="game.secondPlayer"
              mat-stroked-button>
             <p style="font-size: 0.7em; opacity: 0.5;" mat-line> Id:{{game.gameId}} {{game.firstPlayer}}
               ({{game.firstPlayerPieceCode}})</p>

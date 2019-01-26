@@ -4,6 +4,8 @@ import {TicTacToeDTO} from '../../../../../../request-bodies/tic-tac-toe-d-t-o';
 import {Subject, Subscription} from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
 import {StompService} from '../../../../../../services/stomp.service';
+import {SessionStorageService} from '../../../../../../services/session-storage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-tic-tac-toe-lobby',
@@ -23,14 +25,20 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
   games$ = this.games.asObservable();
   private createdGames: Subscription;
   private updatedGames: Subscription;
+  private deletedGames: Subscription;
   private gamesListAcquired = false;
   private eventsBeforeAcquisition: Event[] = [];
+  private username;
 
   constructor(private gamesService: GamesService,
-              private stomp: StompService) {
+              private stomp: StompService,
+              private sessionStorage: SessionStorageService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.username = this.sessionStorage.getUsername();
+
     this.createdGames = this.stomp.watchCreatedGames().subscribe(
       res => {
         if (this.gamesListAcquired) {
@@ -53,6 +61,17 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.deletedGames = this.stomp.watchDeletedGames().subscribe(
+      res => {
+        if (this.gamesListAcquired) {
+          this.gamesMap.delete(res);
+          this.games.next(Array.from(this.gamesMap.values()));
+        } else {
+          this.eventsBeforeAcquisition.push(new Event('delete', res));
+        }
+      }
+    );
+
     this.gamesService.getAvailableGames().subscribe(
       res => {
         res.forEach(game => this.gamesMap.set(game.gameId, game));
@@ -68,7 +87,22 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
               this.gamesMap.set(addition.gameId, update);
               break;
             case 'delete':
+              const gameId = (event.event as number);
+              this.gamesMap.delete(gameId);
               break;
+          }
+        });
+
+        this.gamesMap.forEach(game => {
+          if (game.gameStatus === 'IN_PROGRESS' &&
+            game.secondPlayer === this.username) {
+            this.router.navigate([`/games/tic-tac-toe/${game.gameId}`]).then(
+              () => {
+                console.log(`Navigating to '/games/tic-tac-toe/${game.gameId}'`);
+              },
+              reason => {
+                console.error(`Navigating to '/games/tic-tac-toe/${game.gameId}' failed`, reason);
+              });
           }
         });
 
@@ -83,6 +117,7 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.createdGames.unsubscribe();
     this.updatedGames.unsubscribe();
+    this.deletedGames.unsubscribe();
   }
 
   createNewGame() {
