@@ -1,6 +1,6 @@
 .messages-viewport {
-  height: 400px;
-  width: 40%;
+  width: 25vw;
+  height: 55vh;
   border: 1px solid #666666;
 }
 
@@ -13,11 +13,7 @@
 }
 
 .message-input {
-  width: 30%;
-}
-
-.message-button {
-  width: 10%;
+  width: 20vw;
 }
 
 ::ng-deep .mat-list .mat-list-item .mat-line {

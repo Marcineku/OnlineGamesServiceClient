@@ -1,0 +1,16 @@
+mat-grid-list {
+  height: 85vh;
+}
+
+button {
+  width: 10vw;
+  display: block;
+  margin: 20px 35px 20px 35px;
+}
+
+svg {
+  width: 60vw;
+  height: 80vh;
+  margin: 10px;
+  border: 1px solid #666666;
+}

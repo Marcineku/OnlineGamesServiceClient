@@ -13,9 +13,10 @@
       <mat-list *cdkVirtualFor="let game of games$">
         <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
                        matTooltipPosition="before">
-          <a mat-stroked-button [routerLink]="game.gameId">
-            <p style="font-size: 0.7em; opacity: 0.5;" mat-line>{{game.firstPlayer}} ({{game.firstPlayerPieceCode}})</p>
-            <p style="height: auto" mat-line>Id: {{game.gameId}} Status: {{game.gameStatus}}</p>
+          <a [routerLink]="[game.gameId, {owner: false}]" class="game-element" [disabled]="game.secondPlayer"
+             mat-stroked-button>
+            <p style="font-size: 0.7em; opacity: 0.5;" mat-line> Id:{{game.gameId}} {{game.firstPlayer}} ({{game.firstPlayerPieceCode}})</p>
+            <p style="height: auto" mat-line>Players: {{game.secondPlayer ? '2/2' : '1/2'}} Status: {{game.gameStatus}}</p>
           </a>
         </mat-list-item>
       </mat-list>
@@ -42,7 +43,7 @@
         Create game
       </button>
 
-      <div *ngIf="isCreatingGameError" id="error-message" class="games-creation-form">{{errorMessage}}</div>
+      <div *ngIf="isCreatingGameError" class="games-creation-form error-message">{{creatingErrorMessage}}</div>
     </form>
   </mat-grid-tile>
 </mat-grid-list>

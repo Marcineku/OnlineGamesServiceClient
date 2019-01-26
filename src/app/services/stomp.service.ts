@@ -71,6 +71,12 @@ export class StompService {
     );
   }
 
+  watchUpdatedGames(): Observable<TicTacToeGameDTOResponse> {
+    return this.rxStompService.watch(`/tictactoe/update`).pipe(
+      map(message => JSON.parse(message.body))
+    );
+  }
+
   sendChatMessage(message: string) {
     this.rxStompService.publish({destination: `/app/send/message/${this.gameId}`, body: message});
   }

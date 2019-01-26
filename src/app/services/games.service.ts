@@ -33,7 +33,7 @@ export class GamesService {
       tap(res => {
         console.log('User has created new game', res);
 
-        this.router.navigate([`/games/tic-tac-toe/${res.gameId}`]).then(
+        this.router.navigate([`/games/tic-tac-toe/${res.gameId}`, {owner: true}]).then(
           () => {
             console.log(`Navigating to '/games/tic-tac-toe/${res.gameId}'`);
           },
@@ -43,6 +43,39 @@ export class GamesService {
       }),
       catchError(err => {
         console.error(`User couldn't create new game`, err);
+        return throwError(err);
+      })
+    );
+  }
+
+  joinGame(gameId: number): Observable<TicTacToeGameDTOResponse> {
+    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/join/${gameId}`).pipe(
+      tap(res => {
+        console.log(`User has joined game ${res.gameId}`);
+      }),
+      catchError(err => {
+        console.error(`User couldn't join game ${gameId}`, err);
+
+        this.router.navigate([`/games/tic-tac-toe`]).then(
+          () => {
+            console.log(`Navigating to '/games/tic-tac-toe'`);
+          },
+          reason => {
+            console.error(`Navigating to '/games/tic-tac-toe' failed`, reason);
+          });
+
+        return throwError(err);
+      })
+    );
+  }
+
+  startGame(gameId: number): Observable<TicTacToeGameDTOResponse> {
+    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/start/${gameId}`).pipe(
+      tap(res => {
+        console.log(`User has started game ${res.gameId}`);
+      }),
+      catchError(err => {
+        console.error(`User couldn't start game ${gameId}`, err);
         return throwError(err);
       })
     );
@@ -58,7 +91,7 @@ export class GamesService {
         if (res && res.length > 0) {
           console.log('User has active game pending');
 
-          this.router.navigate([`/games/tic-tac-toe/${res[0].gameId}`]).then(
+          this.router.navigate([`/games/tic-tac-toe/${res[0].gameId}`, {owner: true}]).then(
             () => {
               console.log(`Navigating to '/games/tic-tac-toe/${res[0].gameId}'`);
             },

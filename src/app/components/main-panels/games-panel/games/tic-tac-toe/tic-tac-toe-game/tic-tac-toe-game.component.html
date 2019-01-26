@@ -1,3 +1,59 @@
-<div>
-  <app-chat [gameId]="gameId"></app-chat>
-</div>
+<mat-grid-list cols="3" rowHeight="fit">
+  <mat-grid-tile [colspan]="2" [rowspan]="4">
+    <svg #game>
+      <g>
+        <line *ngFor="let line of board.lines"
+              [attr.x1]="line.p1.x"
+              [attr.y1]="line.p1.y"
+              [attr.x2]="line.p2.x"
+              [attr.y2]="line.p2.y"
+              stroke="white">
+        </line>
+        <g *ngFor="let field of board.fields">
+          <ellipse *ngIf="field.fieldState === 'circle'"
+                   [attr.cx]="field.x + field.width / 2"
+                   [attr.cy]="field.y + field.height / 2"
+                   [attr.rx]="field.width / 3"
+                   [attr.ry]="field.height / 3"
+                   fill-opacity="0"
+                   stroke-width="6"
+                   stroke="white">
+          </ellipse>
+          <g *ngIf="field.fieldState === 'cross'">
+            <line [attr.x1]="field.x + field.width / 5"
+                  [attr.y1]="field.y + field.height / 5"
+                  [attr.x2]="field.x + field.width - field.width / 5"
+                  [attr.y2]="field.y + field.height - field.height / 5"
+                  stroke="white"
+                  stroke-width="6">
+            </line>
+            <line [attr.x1]="field.x + field.width - field.width / 5"
+                  [attr.y1]="field.y + field.height / 5"
+                  [attr.x2]="field.x + field.width / 5"
+                  [attr.y2]="field.y + field.height - field.height / 5"
+                  stroke="white"
+                  stroke-width="6">
+            </line>
+          </g>
+        </g>
+        <rect *ngFor="let field of board.fields"
+              [attr.x]="field.x"
+              [attr.y]="field.y"
+              [attr.width]="field.width"
+              [attr.height]="field.height"
+              fill-opacity="0"
+              (click)="onFieldClick(field.no)">
+        </rect>
+      </g>
+    </svg>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="1">
+    <button mat-raised-button color="primary" [disabled]="gameState ? gameState.secondPlayer === null : false">Start</button>
+    <button mat-raised-button color="primary">Abandon</button>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="3">
+    <app-chat [gameId]="gameId"></app-chat>
+  </mat-grid-tile>
+</mat-grid-list>

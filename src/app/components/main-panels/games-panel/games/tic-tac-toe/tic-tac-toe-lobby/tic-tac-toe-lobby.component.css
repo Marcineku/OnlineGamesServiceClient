@@ -4,17 +4,17 @@
   border: 1px solid #666666;
 }
 
-a {
-  width: 100%;
-}
-
 .games-creation-form {
   width: 20vw;
   display: block;
   margin: 20px auto 20px auto;
 }
 
-#error-message {
+.game-element {
+  width: 100%;
+}
+
+.error-message {
   color: red;
 }
 
