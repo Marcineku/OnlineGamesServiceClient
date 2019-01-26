@@ -45,7 +45,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
         if (!this.isOwner) {
           this.gamesService.joinGame(this.gameId).subscribe();
         } else if (res.gameStatus !== 'IN_PROGRESS' &&
-                   res.gameStatus !== 'WAITING_FOR_PLAYER') {
+          res.gameStatus !== 'WAITING_FOR_PLAYER') {
           this.router.navigate([`/games/tic-tac-toe`]).then(
             () => {
               console.log(`Navigating to '/games/tic-tac-toe'`);
@@ -70,6 +70,15 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
       res => {
         if (res.gameId === this.gameId) {
           this.gameInfo = res;
+
+          if (this.gameInfo.gameStatus === 'IN_PROGRESS') {
+            this.gamesService.getGameState(this.gameId).subscribe(
+              res2 => {
+                this.gameState = res2;
+                this.setBoardState();
+              }
+            );
+          }
         }
       }
     );
@@ -108,9 +117,9 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   onFieldClick(fieldNo: number) {
     const field = this.board.getField(fieldNo);
     if (this.gameState === null ||
-        this.gameState.gameStatus !== 'IN_PROGRESS' ||
-        field.fieldState !== FieldState.Empty ||
-        this.gameState.userTurn !== this.username) {
+      this.gameState.gameStatus !== 'IN_PROGRESS' ||
+      field.fieldState !== FieldState.Empty ||
+      this.gameState.userTurn !== this.username) {
       return;
     }
 
@@ -121,6 +130,13 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
     this.gamesService.startGame(this.gameId).subscribe(
       res => {
         this.gameInfo = res;
+
+        this.gamesService.getGameState(this.gameId).subscribe(
+          res2 => {
+            this.gameState = res2;
+            this.setBoardState();
+          }
+        );
       }
     );
   }
