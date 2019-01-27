@@ -33,7 +33,7 @@
           <span>No. {{boardWithMove.move.moveNo}}</span>
         </mat-panel-title>
         <mat-panel-description>
-          <span>Turn: {{boardWithMove.move.username}}
+          <span>Turn: {{boardWithMove.move.username ? boardWithMove.move.username : 'AI'}}
             ({{boardWithMove.move.username === gameInfo.firstPlayer ? gameInfo.firstPlayerPieceCode : (gameInfo.firstPlayerPieceCode === 'x' ? 'X' : 'O')}})
           </span>
         </mat-panel-description>
