@@ -1,0 +1,82 @@
+<div>
+  <div *ngIf="gameInfo" id="game-moves-header-container">
+    <h3
+      [class.game-winner]="gameInfo.gameStatus === 'FIRST_PLAYER_WON' && gameInfo.firstPlayer === username ||
+                                     gameInfo.gameStatus === 'SECOND_PLAYER_WON' && gameInfo.secondPlayer === username"
+      [class.game-looser]="gameInfo.gameStatus === 'FIRST_PLAYER_WON' && gameInfo.secondPlayer === username ||
+                                     gameInfo.gameStatus === 'SECOND_PLAYER_WON' && gameInfo.firstPlayer === username">
+      {{gameInfo.gameType}}
+    </h3>
+    <p>
+            <span [class.game-winner]="gameInfo.gameStatus === 'FIRST_PLAYER_WON'"
+                  [class.game-looser]="gameInfo.gameStatus === 'SECOND_PLAYER_WON'">
+              {{gameInfo.firstPlayer}} ({{gameInfo.firstPlayerPieceCode.toUpperCase()}})
+            </span>
+      <span> vs </span>
+      <span [class.game-winner]="gameInfo.gameStatus === 'SECOND_PLAYER_WON'"
+            [class.game-looser]="gameInfo.gameStatus === 'FIRST_PLAYER_WON'">
+              {{gameInfo.secondPlayer}} ({{gameInfo.firstPlayerPieceCode.toUpperCase() === 'X' ? 'O' : 'X'}})
+            </span>
+    </p>
+  </div>
+
+  <div>
+    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.openAll()">Open all</button>
+    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.closeAll()">Collapse all
+    </button>
+  </div>
+
+  <mat-accordion [multi]="true" #accordion="matAccordion">
+    <mat-expansion-panel *ngFor="let boardWithMove of boardsWithMoves">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span>No. {{boardWithMove.move.moveNo}}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+          <span>Turn: {{boardWithMove.move.username}}
+            ({{boardWithMove.move.username === gameInfo.firstPlayer ? gameInfo.firstPlayerPieceCode : (gameInfo.firstPlayerPieceCode === 'x' ? 'X' : 'O')}})
+          </span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <svg>
+        <g>
+          <line *ngFor="let line of boardWithMove.board.lines"
+                [attr.x1]="line.p1.x"
+                [attr.y1]="line.p1.y"
+                [attr.x2]="line.p2.x"
+                [attr.y2]="line.p2.y"
+                stroke="white">
+          </line>
+          <g *ngFor="let field of boardWithMove.board.fields">
+            <ellipse *ngIf="field.fieldState === 'circle'"
+                     [attr.cx]="field.x + field.width / 2"
+                     [attr.cy]="field.y + field.height / 2"
+                     [attr.rx]="field.width / 3"
+                     [attr.ry]="field.height / 3"
+                     fill-opacity="0"
+                     stroke-width="6"
+                     [attr.stroke]="field.stroke">
+            </ellipse>
+            <g *ngIf="field.fieldState === 'cross'">
+              <line [attr.x1]="field.x + field.width / 5"
+                    [attr.y1]="field.y + field.height / 5"
+                    [attr.x2]="field.x + field.width - field.width / 5"
+                    [attr.y2]="field.y + field.height - field.height / 5"
+                    [attr.stroke]="field.stroke"
+                    stroke-width="6">
+              </line>
+              <line [attr.x1]="field.x + field.width - field.width / 5"
+                    [attr.y1]="field.y + field.height / 5"
+                    [attr.x2]="field.x + field.width / 5"
+                    [attr.y2]="field.y + field.height - field.height / 5"
+                    [attr.stroke]="field.stroke"
+                    stroke-width="6">
+              </line>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

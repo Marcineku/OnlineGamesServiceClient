@@ -23,6 +23,10 @@ import {GamesListComponent} from './components/main-panels/games-panel/games-lis
 import {TicTacToeGameComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component';
 import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component';
 import {TicTacToeDialogComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-dialog/tic-tac-toe-dialog.component';
+import {SummaryPanelComponent} from './components/main-panels/summary-panel/summary-panel.component';
+import {SummaryPanelRoutingModule} from './routing/summary-panel-routing.module';
+import { GamesHistoryComponent } from './components/main-panels/summary-panel/games-history/games-history.component';
+import { GameMovesComponent } from './components/main-panels/summary-panel/game-moves/game-moves.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,10 @@ import {TicTacToeDialogComponent} from './components/main-panels/games-panel/gam
     GamesListComponent,
     TicTacToeGameComponent,
     TicTacToeLobbyComponent,
-    TicTacToeDialogComponent
+    TicTacToeDialogComponent,
+    SummaryPanelComponent,
+    GamesHistoryComponent,
+    GameMovesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +57,7 @@ import {TicTacToeDialogComponent} from './components/main-panels/games-panel/gam
     MatNativeDateModule,
     ReactiveFormsModule,
     GamesPanelRoutingModule,
+    SummaryPanelRoutingModule,
     AppRoutingModule
   ],
   providers: [

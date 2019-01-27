@@ -21,6 +21,9 @@
         <a mat-tab-link routerLink="games" routerLinkActive #rlaGames="routerLinkActive"
            [active]="rlaGames.isActive"
            [disabled]="!isLoggedIn">Games</a>
+        <a mat-tab-link routerLink="summary" routerLinkActive #rlaSummary="routerLinkActive"
+           [active]="rlaSummary.isActive"
+           [disabled]="!isLoggedIn">Summary</a>
         <a *ngIf="isAdminLoggedIn" mat-tab-link routerLink="admin" routerLinkActive #rlaAdmin="routerLinkActive"
            [active]="rlaAdmin.isActive">Admin</a>
       </nav>

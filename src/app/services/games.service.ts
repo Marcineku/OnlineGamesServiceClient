@@ -5,7 +5,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
-export interface TicTacToeGameDTOResponse {
+export interface TicTacToeGameInfo {
   gameId: number;
   created: Date;
   firstPlayer: string;
@@ -24,6 +24,14 @@ export interface TicTacToeGameState {
   secondUser: string;
 }
 
+export interface TicTacToeMove {
+  moveNo: number;
+  created: Date;
+  field: number;
+  gameId: number;
+  username: string;
+}
+
 const httpHeaders: HttpHeaders = new HttpHeaders({
   'Content-Type': 'application/json'
 });
@@ -37,8 +45,8 @@ export class GamesService {
               private router: Router) {
   }
 
-  createGame(gameDto: TicTacToeDTO): Observable<TicTacToeGameDTOResponse> {
-    return this.http.post<TicTacToeGameDTOResponse>('games/tictactoe', gameDto, {headers: httpHeaders}).pipe(
+  createGame(gameDto: TicTacToeDTO): Observable<TicTacToeGameInfo> {
+    return this.http.post<TicTacToeGameInfo>('games/tictactoe', gameDto, {headers: httpHeaders}).pipe(
       tap(res => {
         console.log('User has created new game', res);
 
@@ -57,8 +65,8 @@ export class GamesService {
     );
   }
 
-  joinGame(gameId: number): Observable<TicTacToeGameDTOResponse> {
-    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/join/${gameId}`).pipe(
+  joinGame(gameId: number): Observable<TicTacToeGameInfo> {
+    return this.http.get<TicTacToeGameInfo>(`games/tictactoe/join/${gameId}`).pipe(
       tap(res => {
         console.log(`User has joined game ${res.gameId}`);
       }),
@@ -78,8 +86,8 @@ export class GamesService {
     );
   }
 
-  startGame(gameId: number): Observable<TicTacToeGameDTOResponse> {
-    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/start/${gameId}`).pipe(
+  startGame(gameId: number): Observable<TicTacToeGameInfo> {
+    return this.http.get<TicTacToeGameInfo>(`games/tictactoe/start/${gameId}`).pipe(
       tap(res => {
         console.log(`User has started game ${res.gameId}`);
       }),
@@ -110,12 +118,12 @@ export class GamesService {
     );
   }
 
-  getAvailableGames(): Observable<TicTacToeGameDTOResponse[]> {
-    return this.http.get<TicTacToeGameDTOResponse[]>('games/tictactoe/list');
+  getAvailableGames(): Observable<TicTacToeGameInfo[]> {
+    return this.http.get<TicTacToeGameInfo[]>('games/tictactoe/list');
   }
 
-  getUserActiveGames(): Observable<TicTacToeGameDTOResponse[]> {
-    return this.http.get<TicTacToeGameDTOResponse[]>('games/tictactoe/games/active').pipe(
+  getUserActiveGames(): Observable<TicTacToeGameInfo[]> {
+    return this.http.get<TicTacToeGameInfo[]>('games/tictactoe/games/active').pipe(
       tap(res => {
         if (res && res.length > 0) {
           console.log('User has active game pending');
@@ -132,11 +140,19 @@ export class GamesService {
     );
   }
 
-  getGameInfo(gameId: number): Observable<TicTacToeGameDTOResponse> {
-    return this.http.get<TicTacToeGameDTOResponse>(`games/tictactoe/${gameId}`);
+  getGameInfo(gameId: number): Observable<TicTacToeGameInfo> {
+    return this.http.get<TicTacToeGameInfo>(`games/tictactoe/${gameId}`);
   }
 
   getGameState(gameId: number): Observable<TicTacToeGameState> {
     return this.http.get<TicTacToeGameState>(`games/tictactoe/state/${gameId}`);
+  }
+
+  getGamesHistory(): Observable<TicTacToeGameInfo[]> {
+    return this.http.get<TicTacToeGameInfo[]>('games/tictactoe/history');
+  }
+
+  getGameMoves(gameId: number): Observable<TicTacToeMove[]> {
+    return this.http.get<TicTacToeMove[]>(`games/tictactoe/history/moves/${gameId}`);
   }
 }

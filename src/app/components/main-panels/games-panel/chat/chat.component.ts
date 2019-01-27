@@ -3,7 +3,7 @@ import {ChatMessage, StompService} from '../../../../services/stomp.service';
 import {Subject, Subscription} from 'rxjs';
 import {SessionStorageService} from '../../../../services/session-storage.service';
 import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
-import {GamesService, TicTacToeGameDTOResponse} from '../../../../services/games.service';
+import {GamesService, TicTacToeGameInfo} from '../../../../services/games.service';
 
 @Component({
   selector: 'app-chat',
@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   @Input() gameId: number;
   message = '';
   username: string;
-  gameInfo: TicTacToeGameDTOResponse;
+  gameInfo: TicTacToeGameInfo;
   private messagesList: ChatMessage[] = [];
   private messages = new Subject<ChatMessage[]>();
   messages$ = this.messages.asObservable();

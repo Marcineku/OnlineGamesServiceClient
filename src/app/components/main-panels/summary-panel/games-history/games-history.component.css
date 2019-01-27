@@ -1,0 +1,36 @@
+cdk-virtual-scroll-viewport {
+  width: 70vw;
+  height: 80vh;
+  border: 1px solid #666666;
+}
+
+a {
+  width: 100%;
+}
+
+mat-grid-list {
+  height: 86vh;
+}
+
+table {
+  width: 100%;
+  margin-left: 10px;
+  background-color: #303030;
+}
+
+.game-winner {
+  color: green;
+}
+
+.game-looser {
+  color: red;
+}
+
+::ng-deep .mat-list .mat-list-item .mat-line {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+::ng-deep .mat-list .mat-list-item {
+  height: initial !important;
+}

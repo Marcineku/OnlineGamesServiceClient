@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {GamesService, TicTacToeGameDTOResponse, TicTacToeGameState} from '../../../../../../services/games.service';
+import {GamesService, TicTacToeGameInfo, TicTacToeGameState} from '../../../../../../services/games.service';
 import {SessionStorageService} from '../../../../../../services/session-storage.service';
 import {StompService} from '../../../../../../services/stomp.service';
 import {MatDialog} from '@angular/material';
@@ -17,7 +17,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   isOwner: boolean;
   @ViewChild('game') svg: ElementRef;
   board: Board;
-  gameInfo: TicTacToeGameDTOResponse;
+  gameInfo: TicTacToeGameInfo;
   gameState: TicTacToeGameState = null;
   private paramMap$: Subscription;
   private updatedGames: Subscription;
@@ -238,7 +238,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   }
 }
 
-class Board {
+export class Board {
   fields: Field[] = [];
   lines: Line[] = [];
 
@@ -333,6 +333,8 @@ class Field {
 
   fieldState: FieldState;
 
+  stroke = 'white';
+
   constructor(no: number, x: number, y: number, width: number, height: number) {
     this.no = no;
     this.x = x;
@@ -364,7 +366,7 @@ class Point {
   }
 }
 
-enum FieldState {
+export enum FieldState {
   Circle = 'circle',
   Cross = 'cross',
   Empty = 'empty'

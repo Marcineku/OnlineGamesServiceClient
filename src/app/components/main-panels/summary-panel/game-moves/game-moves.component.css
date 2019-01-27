@@ -1,0 +1,32 @@
+#game-moves-header-container {
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.game-moves-button {
+  margin-left: 20px;
+  width: 100px;
+}
+
+.game-winner {
+  color: green;
+}
+
+.game-looser {
+  color: red;
+}
+
+mat-accordion {
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+svg {
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

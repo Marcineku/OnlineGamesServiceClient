@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GamesService, TicTacToeGameDTOResponse} from '../../../../../../services/games.service';
+import {GamesService, TicTacToeGameInfo} from '../../../../../../services/games.service';
 import {TicTacToeDTO} from '../../../../../../request-bodies/tic-tac-toe-d-t-o';
 import {Subject, Subscription} from 'rxjs';
 import {FormControl, Validators} from '@angular/forms';
@@ -20,8 +20,8 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
   usernameFilter = '';
   isCreatingGameError = false;
   creatingErrorMessage = '';
-  private gamesMap: Map<number, TicTacToeGameDTOResponse> = new Map();
-  private games = new Subject<TicTacToeGameDTOResponse[]>();
+  private gamesMap: Map<number, TicTacToeGameInfo> = new Map();
+  private games = new Subject<TicTacToeGameInfo[]>();
   games$ = this.games.asObservable();
   private createdGames: Subscription;
   private updatedGames: Subscription;
@@ -79,11 +79,11 @@ export class TicTacToeLobbyComponent implements OnInit, OnDestroy {
         this.eventsBeforeAcquisition.forEach(event => {
           switch (event.type) {
             case 'add':
-              const addition = (event.event as TicTacToeGameDTOResponse);
+              const addition = (event.event as TicTacToeGameInfo);
               this.gamesMap.set(addition.gameId, addition);
               break;
             case 'update':
-              const update = (event.event as TicTacToeGameDTOResponse);
+              const update = (event.event as TicTacToeGameInfo);
               this.gamesMap.set(addition.gameId, update);
               break;
             case 'delete':
