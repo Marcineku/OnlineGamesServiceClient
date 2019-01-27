@@ -13,12 +13,21 @@
       <mat-list *cdkVirtualFor="let game of games$">
         <mat-list-item [matTooltip]="game.created | date: 'dd.MM.yyyy hh:mm:ss'"
                        matTooltipPosition="before">
-          <a [routerLink]="game.secondPlayer ? [] : [game.gameId]" class="game-element" [disabled]="game.secondPlayer"
+          <a [routerLink]="game.secondPlayer || game.gameType === 'SINGLEPLAYER' ? [] : [game.gameId]" class="game-element" [disabled]="game.secondPlayer || game.gameType === 'SINGLEPLAYER' "
              mat-stroked-button>
-            <p style="font-size: 0.7em; opacity: 0.5;" mat-line> Id:{{game.gameId}} {{game.firstPlayer}}
-              ({{game.firstPlayerPieceCode}})</p>
-            <p style="height: auto" mat-line>Players: {{game.secondPlayer ? '2/2' : '1/2'}}
-              Status: {{game.gameStatus}}</p>
+            <h4 style="opacity: 0.5;" mat-line>
+              {{game.gameType === 'MULTIPLAYER' ? game.secondPlayer ? 'FULL' : '1/2' : ''}}
+              {{game.gameType}}
+              <span> ({{game.gameStatus}})</span>
+            </h4>
+            <p *ngIf="game.gameType === 'MULTIPLAYER'" style="height: auto" mat-line>
+              {{game.firstPlayer}} ({{game.firstPlayerPieceCode}})
+              {{game.secondPlayer ? game.firstPlayerPieceCode.toLowerCase() === 'x' ? 'vs ' + game.secondPlayer + '(O)' : 'vs ' + game.secondPlayer + '(X)' : ''}}
+            </p>
+            <p *ngIf="game.gameType === 'SINGLEPLAYER'" style="height: auto" mat-line>
+              {{game.firstPlayer}} ({{game.firstPlayerPieceCode}})
+              {{game.firstPlayerPieceCode.toLowerCase() === 'x' ? 'vs ' + 'AI (O)' : 'vs AI (X)' }}
+            </p>
           </a>
         </mat-list-item>
       </mat-list>

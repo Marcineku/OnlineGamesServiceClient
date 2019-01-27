@@ -125,6 +125,9 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
             break;
           case 'SECOND_PLAYER_WON':
             gameEnded = true;
+            if (!this.gameState.secondUser) {
+              this.gameState.secondUser = 'AI';
+            }
             message = `${this.gameState.secondUser} has won!`;
             break;
           case 'DRAW':
