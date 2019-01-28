@@ -34,7 +34,7 @@
               <span> vs </span>
               <span [class.game-winner]="game.gameStatus === 'SECOND_PLAYER_WON'"
                     [class.game-looser]="game.gameStatus === 'FIRST_PLAYER_WON'">
-              {{game.secondPlayer}} ({{game.firstPlayerPieceCode.toUpperCase() === 'X' ? 'O' : 'X'}})
+              {{game.secondPlayer ? game.secondPlayer : 'AI'}} ({{game.firstPlayerPieceCode.toUpperCase() === 'X' ? 'O' : 'X'}})
             </span>
             </p>
           </a>
