@@ -3,18 +3,30 @@ import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable, of, throwError} from 'rxjs';
 import {concatMap, delay, retryWhen} from 'rxjs/operators';
 import {AuthService} from '../services/auth.service';
+import {SessionStorageService} from '../services/session-storage.service';
 
-// 'http://localhost:8080/';
-// 'http://192.168.0.248:8080/';
+const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   private apiUrl = 'http://localhost:8080/';
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService,
+              private sessionStorage: SessionStorageService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (req.headers.has(InterceptorSkipHeader)) {
+      const headers = req.headers.delete(InterceptorSkipHeader);
+      return next.handle(req.clone({headers}));
+    }
+
+    const token = this.sessionStorage.getToken();
+    if (token) {
+      const tokenType = this.sessionStorage.getTokenType();
+      req = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, tokenType + ' ' + token)});
+    }
+
     return next.handle(req.clone({url: this.apiUrl + req.url})).pipe(
       retryWhen(errors => errors.pipe(
         concatMap((err, i) => {
@@ -35,6 +47,8 @@ export class ApiInterceptor implements HttpInterceptor {
     );
   }
 }
+
+export const InterceptorSkipHeader = 'X-Skip-Interceptor';
 
 export const apiInterceptorProvider = {
   provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true

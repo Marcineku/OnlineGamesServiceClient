@@ -11,7 +11,6 @@ import {UserComponent} from './components/user/user.component';
 import {RegistrationComponent} from './components/user/registration/registration.component';
 import {UserDetailsComponent} from './components/user/user-details/user-details.component';
 import {apiInterceptorProvider} from './http-interceptors/api-interceptor';
-import {tokenInterceptorProvider} from './http-interceptors/token-interceptor';
 import {AdminPanelComponent} from './components/main-panels/admin-panel/admin-panel.component';
 import {TicTacToeComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe.component';
 import {GamesPanelComponent} from './components/main-panels/games-panel/games-panel.component';
@@ -25,8 +24,8 @@ import {TicTacToeLobbyComponent} from './components/main-panels/games-panel/game
 import {TicTacToeDialogComponent} from './components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-dialog/tic-tac-toe-dialog.component';
 import {SummaryPanelComponent} from './components/main-panels/summary-panel/summary-panel.component';
 import {SummaryPanelRoutingModule} from './routing/summary-panel-routing.module';
-import { GamesHistoryComponent } from './components/main-panels/summary-panel/games-history/games-history.component';
-import { GameMovesComponent } from './components/main-panels/summary-panel/game-moves/game-moves.component';
+import {GamesHistoryComponent} from './components/main-panels/summary-panel/games-history/games-history.component';
+import {GameMovesComponent} from './components/main-panels/summary-panel/game-moves/game-moves.component';
 
 @NgModule({
   declarations: [
@@ -61,8 +60,7 @@ import { GameMovesComponent } from './components/main-panels/summary-panel/game-
     AppRoutingModule
   ],
   providers: [
-    apiInterceptorProvider,
-    tokenInterceptorProvider
+    apiInterceptorProvider
   ],
   bootstrap: [AppComponent],
   entryComponents: [TicTacToeGameComponent, TicTacToeDialogComponent]
