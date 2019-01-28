@@ -7,8 +7,6 @@ import {AuthService} from '../services/auth.service';
 // 'http://localhost:8080/';
 // 'http://192.168.0.248:8080/';
 
-export const InterceptorSkipHeader = 'X-Skip-Interceptor';
-
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
   private apiUrl = 'http://localhost:8080/';
@@ -17,11 +15,6 @@ export class ApiInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.headers.has(InterceptorSkipHeader)) {
-      const headers = req.headers.delete(InterceptorSkipHeader);
-      return next.handle(req.clone({headers}));
-    }
-
     return next.handle(req.clone({url: this.apiUrl + req.url})).pipe(
       retryWhen(errors => errors.pipe(
         concatMap((err, i) => {

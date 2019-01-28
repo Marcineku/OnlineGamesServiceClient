@@ -40,9 +40,6 @@ export class GamesHistoryComponent implements OnInit {
         this.gamesHistoryList = res;
         this.gamesHistory.next(this.gamesHistoryList);
 
-        // Amount of games played
-        this.gamesPlayed = res.length;
-
         // Win rate
         res.forEach(game => {
           let winnerName = '';
@@ -55,12 +52,15 @@ export class GamesHistoryComponent implements OnInit {
             looserName = game.firstPlayer;
           }
 
-          if (winnerName === this.username) {
-            this.gamesWon += 1;
-          } else if (looserName === this.username) {
-            this.gamesLost += 1;
-          } else {
-            this.gamesDraws += 1;
+          if (game.gameType === 'MULTIPLAYER') {
+            this.gamesPlayed += 1;
+            if (winnerName === this.username) {
+              this.gamesWon += 1;
+            } else if (looserName === this.username) {
+              this.gamesLost += 1;
+            } else {
+              this.gamesDraws += 1;
+            }
           }
         });
         this.winRate = this.gamesWon / this.gamesPlayed * 100;
