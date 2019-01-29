@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 ">
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="295bb17e78fef00b6d8eb879a1fc616013ec2d09" datatype="html">
-        <source>Status:</source>
-        <target>Status:</target>
+        <source>Status: </source>
+        <target>Status: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">4</context>
@@ -19,12 +18,20 @@
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="9eb8836d5888f253c49f72e2a58a3f39037c847d" datatype="html">
+        <source>Change Style</source>
+        <target>Zmień Styl</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1d0974afae70914072a4fbf19e53328e517bae73" datatype="html">
         <source>News</source>
         <target>Wiadomości</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="71249314fa72f5f9e0d93b8c59f9e148e0ff617f" datatype="html">
@@ -32,7 +39,7 @@
         <target>Gry</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
@@ -40,7 +47,7 @@
         <target>Podsumowanie</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
@@ -48,7 +55,7 @@
         <target>Admin</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d44da2ca04de85d1bbe27c316870a004bc26cc09" datatype="html">
@@ -85,11 +92,11 @@
       </trans-unit>
       <trans-unit id="fd9d84e1712e1bb15e3fb3c7dcc0f8f30b30cdcb" datatype="html">
         <source>
-          Account was successfully created, you can now login
-        </source>
+    Account was successfully created, you can now login
+  </source>
         <target>
-          Konto zostało pomyślnie założone, możesz się teraz zalogować
-        </target>
+    Konto zostało pomyślnie założone, możesz się zalogować
+  </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/login/login.component.html</context>
           <context context-type="linenumber">18</context>
@@ -113,7 +120,7 @@
       </trans-unit>
       <trans-unit id="aeb72b02ae41264d9fef3dde93f817f2e049eb47" datatype="html">
         <source>Choose at least one role</source>
-        <target>Wybierz przynajmniej jedną rolę</target>
+        <target>Wybierz conajmniej jedną rolę</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
           <context context-type="linenumber">16</context>
@@ -121,11 +128,11 @@
       </trans-unit>
       <trans-unit id="c35e81f5443541721d52cba738b91ce3cb2ff10c" datatype="html">
         <source>
-          Enter password that contains between 6 and 16 characters
-        </source>
+        Enter password that contains between 6 and 16 characters
+      </source>
         <target>
-          Wprowadź hasło zawierające od 6 do 16 znaków
-        </target>
+        Wprowadź hasło zawierające od 6 do 16 znaków
+      </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
           <context context-type="linenumber">25</context>
@@ -133,39 +140,39 @@
       </trans-unit>
       <trans-unit id="0a9dcaac5aadd48fe716eaff77ab9b21a8bef3af" datatype="html">
         <source>Passwords do not match</source>
-        <target>Hasła się różnią</target>
+        <target>Hasła do siebie nie pasują</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4475c0d156cb63f80764a543ef3fc860af88dad4" datatype="html">
-        <source>Username:</source>
-        <target>Username:</target>
+        <source>Username: </source>
+        <target>Username: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e98b5e6562f470622527a34af38f905b2d7aa2c7" datatype="html">
-        <source>Roles:</source>
-        <target>Role:</target>
+        <source>Roles: </source>
+        <target>Role: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8d40ac789bfe83ba7bebee976ca5b840d4ac56b1" datatype="html">
-        <source>Token type:</source>
-        <target>Typ tokenu:</target>
+        <source>Token type: </source>
+        <target>Typ tokenu: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="96ba3fa0f3f5742a9c0ed5fe23df4a2f350eb82d" datatype="html">
-        <source>Token:</source>
-        <target>Token:</target>
+        <source>Token: </source>
+        <target>Token: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
           <context context-type="linenumber">5</context>
@@ -181,7 +188,7 @@
       </trans-unit>
       <trans-unit id="7f03b91d9d42be324adb38315bac933f1d062bf7" datatype="html">
         <source>Enter type</source>
-        <target>Wprowadź typ</target>
+        <target>Podaj typ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
           <context context-type="linenumber">7</context>
@@ -205,7 +212,7 @@
       </trans-unit>
       <trans-unit id="8f2e3daf4aa2b11221b1a65afbc66f7c2a99a0f1" datatype="html">
         <source>Pick one language</source>
-        <target>Wybierz jedną wersję językową</target>
+        <target>Wybierz język</target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
           <context context-type="linenumber">24</context>
@@ -213,11 +220,11 @@
       </trans-unit>
       <trans-unit id="72cc4500fd5c2d08e8e614f11343506af1288b2f" datatype="html">
         <source>
-          Create news
-        </source>
+        Create news
+      </source>
         <target>
-          Wyślij wiadomości
-        </target>
+        Utwórz wiadomości
+      </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
           <context context-type="linenumber">27</context>
@@ -240,8 +247,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="ee5b16adf0b237e70b8567f7af3e5c8a547d50ac" datatype="html">
-        <source>Total:</source>
-        <target>Łącznie:</target>
+        <source>Total: </source>
+        <target>Łącznie: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
           <context context-type="linenumber">41</context>
@@ -252,8 +259,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="577d2ae1ba894a301e93f4da5bb3765776afd4a4" datatype="html">
-        <source>Uniques:</source>
-        <target>Unikalnych:</target>
+        <source>Uniques: </source>
+        <target>Unikalnych: </target>
         <context-group purpose="location">
           <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
           <context context-type="linenumber">42</context>
@@ -308,46 +315,38 @@
         </context-group>
       </trans-unit>
       <trans-unit id="f15b6135743c47ba94d60218a34876d2634170ab" datatype="html">
-        <source>Turn:</source>
-        <target>Tura:</target>
+        <source>Turn: </source>
+        <target>Tura: </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
-          </context>
-          <context context-type="linenumber">36</context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/game-moves/game-moves.component.html</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="585838ce2a0bb8f81dbe13104a25b960ea948af1" datatype="html">
         <source>
-          Start
-        </source>
+        Start
+      </source>
         <target>
-          Start
-        </target>
+        Start
+      </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html</context>
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="13a708ab1f05214f1630667aa40d55583dc99d7a" datatype="html">
         <source>
-          Abandon
-        </source>
+        Abandon
+      </source>
         <target>
-          Porzuć
-        </target>
+        Porzuć
+      </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html</context>
           <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
@@ -355,9 +354,7 @@
         <source>Choose game type</source>
         <target>Wybierz typ gry</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html</context>
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
@@ -365,23 +362,19 @@
         <source>Choose piece code</source>
         <target>Wybierz znak</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html</context>
           <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5a490605d0885d2ce3e81c928ea34da4a7723add" datatype="html">
         <source>
-          Create game
-        </source>
+        Create game
+      </source>
         <target>
-          Stwórz grę
-        </target>
+        Stwórz grę
+      </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
@@ -389,9 +382,7 @@
         <source>Name</source>
         <target>Nazwa</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/games-history/games-history.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/games-history/games-history.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
@@ -399,42 +390,36 @@
         <source>Value</source>
         <target>Wartość</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/games-history/games-history.component.html
-          </context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/games-history/games-history.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d2565f2e150e99a1421008f9e4496ad22dc02f76" datatype="html">
-        <source>Open all</source>
-        <target>Otwórz wszystkie</target>
+      <trans-unit id="52be17003b76770779f52203c3d4aadcba29d361" datatype="html">
+        <source>Open all
+    </source>
+        <target>Otwórz wszystkie
+    </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
-          </context>
-          <context context-type="linenumber">24</context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/game-moves/game-moves.component.html</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="373e3c8e4793c3c3645c163bf4c2645d7b835899" datatype="html">
         <source>Collapse all
-        </source>
+    </source>
         <target>Zamknij wszystkie
-        </target>
+    </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
-          </context>
-          <context context-type="linenumber">25</context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/game-moves/game-moves.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4f2b657098231a4a4920165bc1ed34feb2e2e9d7" datatype="html">
-        <source>No.</source>
-        <target>Nr.</target>
+        <source>No. </source>
+        <target>Nr. </target>
         <context-group purpose="location">
-          <context context-type="sourcefile">
-            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
-          </context>
-          <context context-type="linenumber">33</context>
+          <context context-type="sourcefile">app/components/main-panels/summary-panel/game-moves/game-moves.component.html</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
     </body>
