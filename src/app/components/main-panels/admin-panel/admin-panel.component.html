@@ -1,31 +1,77 @@
-<div id="admin-panel-container">
+<mat-grid-list cols="3" rowHeight="fit">
+  <mat-grid-tile [colspan]="1" [rowspan]="10">
+    <form>
+      <h3 class="news-input">Add news</h3>
+      <mat-form-field class="news-input">
+        <input matInput placeholder="Type" [formControl]="type">
+        <mat-error *ngIf="type.invalid">Enter type</mat-error>
+      </mat-form-field>
 
-  <h3 id="news-create-header">Add news</h3>
+      <mat-form-field class="news-input">
+        <input matInput placeholder="Text" [formControl]="text">
+        <mat-error *ngIf="text.invalid">Enter text</mat-error>
+      </mat-form-field>
 
-  <mat-form-field id="news-input-type">
-    <input matInput placeholder="Type" [formControl]="type">
-    <mat-error *ngIf="type.invalid">Enter type</mat-error>
-  </mat-form-field>
+      <mat-form-field class="news-input">
+        <input matInput placeholder="Title" [formControl]="title">
+        <mat-error *ngIf="title.invalid">Enter title</mat-error>
+      </mat-form-field>
 
-  <mat-form-field id="news-input-text">
-    <input matInput placeholder="Text" [formControl]="text">
-    <mat-error *ngIf="text.invalid">Enter text</mat-error>
-  </mat-form-field>
+      <mat-form-field class="news-input">
+        <mat-select placeholder="Language" [formControl]="languages">
+          <mat-option *ngFor="let lang of languagesList" [value]="lang">{{lang}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="languages.invalid">Pick one language</mat-error>
+      </mat-form-field>
 
-  <mat-form-field id="news-input-title">
-    <input matInput placeholder="Title" [formControl]="title">
-    <mat-error *ngIf="title.invalid">Enter title</mat-error>
-  </mat-form-field>
+      <button class="news-input" mat-raised-button id="news-create-button" color="primary" (click)="onCreateNews()">
+        Create news
+      </button>
+      <div class="news-input">{{info}}</div>
+    </form>
+  </mat-grid-tile>
 
-  <mat-form-field id="news-input-language">
-    <mat-select placeholder="Language" [formControl]="languages">
-      <mat-option *ngFor="let lang of languagesList" [value]="lang">{{lang}}</mat-option>
-    </mat-select>
-    <mat-error *ngIf="languages.invalid">Pick one language</mat-error>
-  </mat-form-field>
+  <mat-grid-tile [colspan]="2" [rowspan]="4">
+    <h2>Github Traffic</h2>
+  </mat-grid-tile>
 
-  <div>
-    <button mat-raised-button id="news-create-button" color="primary" (click)="onCreateNews()">Create news</button>
-  </div>
-  <div id="news-create-info">{{info}}</div>
-</div>
+  <mat-grid-tile [colspan]="1" [rowspan]="9">
+    <div *ngIf="clientTraffic">
+      <h3>Client</h3>
+      <h2>Total: {{clientTraffic.count}}</h2>
+      <h2>Uniques: {{clientTraffic.uniques}}</h2>
+      <mat-list>
+        <mat-list-item style="color: #888888">
+          <span>Date</span>
+          <span>Count</span>
+          <span>Uniques</span>
+        </mat-list-item>
+        <mat-list-item *ngFor="let client of clientTraffic.views">
+          <span>{{client.timestamp | date: 'dd.MM'}}</span>
+          <span [class.critical-info]="client.count >= 100">{{client.count}}</span>
+          <span>{{client.uniques}}</span>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="1" [rowspan]="9">
+    <div *ngIf="serverTraffic">
+      <h3>Server</h3>
+      <h2>Total: {{serverTraffic.count}}</h2>
+      <h2>Uniques: {{serverTraffic.uniques}}</h2>
+      <mat-list>
+        <mat-list-item style="color: #888888">
+          <span>Date</span>
+          <span>Count</span>
+          <span>Uniques</span>
+        </mat-list-item>
+        <mat-list-item *ngFor="let server of serverTraffic.views">
+          <span>{{server.timestamp | date: 'dd.MM'}}</span>
+          <span [class.critical-info]="server.count >= 100">{{server.count}}</span>
+          <span>{{server.uniques}}</span>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

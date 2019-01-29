@@ -29,5 +29,6 @@ export class GiphyService {
 }
 
 export enum Gif {
-  TicTacToe = 'gFpQKMNreK2nm'
+  TicTacToe = 'gFpQKMNreK2nm',
+  GitMerge = 'cFkiFMDg3iFoI'
 }

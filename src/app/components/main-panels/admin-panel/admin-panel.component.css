@@ -1,10 +1,26 @@
-#news-input-type, #news-input-text, #news-input-title, #news-input-language, #news-create-button, #news-create-header {
-  width: 200px;
-  display: block;
-  margin: 20px;
+.news-input {
+  width: 50%;
+  margin-bottom: 20px;
+  margin-left: 20px;
 }
 
-#news-create-info {
-  display: block;
-  margin: 20px;
+mat-grid-list {
+  height: 80vh;
+}
+
+::ng-deep .mat-list .mat-list-item .mat-line {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+::ng-deep .mat-list .mat-list-item {
+  height: initial !important;
+}
+
+span {
+  width: 60px;
+}
+
+.critical-info {
+  color: red;
 }

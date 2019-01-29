@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {NewsService} from '../../../services/news.service';
 import {NewsDTO} from '../../../request-bodies/news-d-t-o';
+import {GithubService, Traffic} from '../../../services/github.service';
+import {Gif, GiphyService} from '../../../services/giphy.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -17,10 +19,26 @@ export class AdminPanelComponent implements OnInit {
 
   info = '';
 
-  constructor(private newsService: NewsService) {
+  clientTraffic: Traffic;
+  serverTraffic: Traffic;
+
+  constructor(private newsService: NewsService,
+              private github: GithubService,
+              private giphy: GiphyService) {
   }
 
   ngOnInit() {
+    this.github.getClientTraffic().subscribe(
+      res => {
+        this.clientTraffic = res;
+      }
+    );
+
+    this.github.getServerTraffic().subscribe(
+      res => {
+        this.serverTraffic = res;
+      }
+    );
   }
 
   onCreateNews() {
