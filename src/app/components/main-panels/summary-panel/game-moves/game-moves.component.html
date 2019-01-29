@@ -15,13 +15,15 @@
       <span> vs </span>
       <span [class.game-winner]="gameInfo.gameStatus === 'SECOND_PLAYER_WON'"
             [class.game-looser]="gameInfo.gameStatus === 'FIRST_PLAYER_WON'">
-              {{gameInfo.secondPlayer ? gameInfo.secondPlayer : 'AI'}} ({{gameInfo.firstPlayerPieceCode.toUpperCase() === 'X' ? 'O' : 'X'}})
+              {{gameInfo.secondPlayer ? gameInfo.secondPlayer : 'AI'}}
+        ({{gameInfo.firstPlayerPieceCode.toUpperCase() === 'X' ? 'O' : 'X'}})
             </span>
     </p>
   </div>
 
   <div>
-    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.openAll()" i18n>Open all</button>
+    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.openAll()" i18n>Open all
+    </button>
     <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.closeAll()" i18n>Collapse all
     </button>
   </div>
@@ -46,7 +48,7 @@
                 [attr.y1]="line.p1.y"
                 [attr.x2]="line.p2.x"
                 [attr.y2]="line.p2.y"
-                stroke="white">
+                [attr.stroke]="lightTheme ? ' black' : 'white'">
           </line>
           <g *ngFor="let field of boardWithMove.board.fields">
             <ellipse *ngIf="field.fieldState === 'circle'"

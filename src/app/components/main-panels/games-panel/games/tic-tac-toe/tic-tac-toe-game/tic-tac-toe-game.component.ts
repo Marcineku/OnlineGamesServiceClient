@@ -6,6 +6,7 @@ import {SessionStorageService} from '../../../../../../services/session-storage.
 import {StompService} from '../../../../../../services/stomp.service';
 import {MatDialog} from '@angular/material';
 import {TicTacToeDialogComponent} from '../tic-tac-toe-dialog/tic-tac-toe-dialog.component';
+import {ThemeService} from '../../../../../../services/theme.service';
 
 @Component({
   selector: 'app-tic-tac-toe-game',
@@ -25,16 +26,36 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
   private username;
   private deletedGames: Subscription;
   private dialogRef;
+  private lightTheme: boolean;
+  private themeChanged: Subscription;
 
   constructor(private route: ActivatedRoute,
               private gamesService: GamesService,
               private stomp: StompService,
               private sessionStorage: SessionStorageService,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private theme: ThemeService) {
   }
 
   ngOnInit() {
+    const theme = this.sessionStorage.getTheme();
+    this.lightTheme = theme === 'light';
+
+    this.themeChanged = this.theme.themeChanged$.subscribe(
+      res => {
+        this.lightTheme = res === 'light';
+
+        this.board.fields.forEach(field => {
+          if (this.lightTheme) {
+            field.stroke = 'black';
+          } else {
+            field.stroke = 'white';
+          }
+        });
+      }
+    );
+
     this.username = this.sessionStorage.getUsername();
 
     this.paramMap$ = this.route.paramMap.subscribe(
@@ -161,13 +182,13 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
 
     const width = this.svg.nativeElement.getBoundingClientRect().width;
     const height = this.svg.nativeElement.getBoundingClientRect().height;
-    this.board = new Board(width, height);
+    this.board = new Board(this.lightTheme, width, height);
   }
 
   ngAfterViewInit() {
     const width = this.svg.nativeElement.getBoundingClientRect().width;
     const height = this.svg.nativeElement.getBoundingClientRect().height;
-    this.board = new Board(width, height);
+    this.board = new Board(this.lightTheme, width, height);
   }
 
   ngOnDestroy() {
@@ -175,6 +196,7 @@ export class TicTacToeGameComponent implements OnInit, OnDestroy, AfterViewInit 
     this.updatedGames.unsubscribe();
     this.moves.unsubscribe();
     this.deletedGames.unsubscribe();
+    this.themeChanged.unsubscribe();
   }
 
   @HostListener('window:resize')
@@ -245,12 +267,12 @@ export class Board {
   fields: Field[] = [];
   lines: Line[] = [];
 
-  constructor(width: number, height: number) {
+  constructor(lightTheme: boolean, width: number, height: number) {
     for (let i = 0; i < 4; ++i) {
       this.lines.push(new Line(0, 0, 0, 0));
     }
     for (let i = 0; i < 9; ++i) {
-      this.fields.push(new Field(i, 0, 0, 0, 0));
+      this.fields.push(new Field(lightTheme, i, 0, 0, 0, 0));
     }
 
     this.reDraw(width, height);
@@ -336,9 +358,9 @@ class Field {
 
   fieldState: FieldState;
 
-  stroke = 'white';
+  stroke: string;
 
-  constructor(no: number, x: number, y: number, width: number, height: number) {
+  constructor(lightTheme: boolean, no: number, x: number, y: number, width: number, height: number) {
     this.no = no;
     this.x = x;
     this.y = y;
@@ -346,6 +368,12 @@ class Field {
     this.height = height;
 
     this.fieldState = FieldState.Empty;
+
+    if (lightTheme) {
+      this.stroke = 'black';
+    } else {
+      this.stroke = 'white';
+    }
   }
 }
 

@@ -32,17 +32,14 @@ export class ApiInterceptor implements HttpInterceptor {
         concatMap((err, i) => {
           switch (err.status) {
             case 0:
-              if (i < 2) {
-                return of(err);
-              }
-              break;
+              return of(err);
             case 401:
               this.auth.logout();
-              break;
+              return throwError(err);
           }
           return throwError(err);
         }),
-        delay(1000)
+        delay(2000)
       ))
     );
   }

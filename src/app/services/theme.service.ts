@@ -12,14 +12,8 @@ export class ThemeService {
   constructor(private sessionStorage: SessionStorageService) {
   }
 
-  changeTheme() {
-    const theme = this.sessionStorage.getTheme();
-    if (theme === 'dark') {
-      this.sessionStorage.setTheme('light');
-      this.themeChanged.next('light');
-    } else {
-      this.sessionStorage.setTheme('dark');
-      this.themeChanged.next('dark');
-    }
+  changeTheme(theme: string) {
+    this.sessionStorage.setTheme(theme);
+    this.themeChanged.next(theme);
   }
 }

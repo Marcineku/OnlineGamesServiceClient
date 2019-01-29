@@ -5,6 +5,7 @@ import {AuthService} from './services/auth.service';
 import {Subscription} from 'rxjs';
 import {StompService} from './services/stomp.service';
 import {Gif, GiphyService} from './services/giphy.service';
+import {ThemeService} from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
               private media: MediaMatcher,
               private auth: AuthService,
               private stomp: StompService,
-              private giphy: GiphyService) {
+              private giphy: GiphyService,
+              private theme: ThemeService) {
   }
 
   ngOnInit() {
@@ -96,8 +98,10 @@ export class AppComponent implements OnInit, OnDestroy {
   onChangeStyle() {
     if (this.lightTheme) {
       this.lightTheme = false;
+      this.theme.changeTheme('dark');
     } else {
       this.lightTheme = true;
+      this.theme.changeTheme('light');
     }
   }
 
