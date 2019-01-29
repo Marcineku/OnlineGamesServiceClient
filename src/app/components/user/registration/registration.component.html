@@ -1,19 +1,19 @@
 <form>
   <mat-form-field class="register-form">
     <input matInput placeholder="Username" type="text" [formControl]="username" autocomplete="username">
-    <mat-error *ngIf="username.invalid">Enter username that contains from 4 to 20 characters</mat-error>
+    <mat-error *ngIf="username.invalid" i18n>Enter username that contains from 4 to 20 characters</mat-error>
   </mat-form-field>
 
   <mat-form-field class="register-form">
     <input matInput placeholder="Email" type="email" [formControl]="email" autocomplete="email">
-    <mat-error *ngIf="email.invalid">Enter valid email address</mat-error>
+    <mat-error *ngIf="email.invalid" i18n>Enter valid email address</mat-error>
   </mat-form-field>
 
   <mat-form-field class="register-form">
     <mat-select placeholder="Roles" [formControl]="roles" [multiple]="true">
       <mat-option *ngFor="let role of rolesList" [value]="role">{{role}}</mat-option>
     </mat-select>
-    <mat-error *ngIf="roles.invalid">Choose at least one role</mat-error>
+    <mat-error *ngIf="roles.invalid" i18n>Choose at least one role</mat-error>
   </mat-form-field>
 
   <div [formGroup]="passwordForm">
@@ -22,7 +22,7 @@
              type="password"
              formControlName="password"
              autocomplete="new-password">
-      <mat-error *ngIf="passwordForm.invalid === null ? true : passwordForm.invalid">
+      <mat-error *ngIf="passwordForm.invalid === null ? true : passwordForm.invalid" i18n>
         Enter password that contains between 6 and 16 characters
       </mat-error>
     </mat-form-field>
@@ -33,12 +33,12 @@
              formControlName="confirmPassword"
              autocomplete="new-password"
              [errorStateMatcher]="matcher">
-      <mat-error *ngIf="passwordForm.hasError('notSame')">Passwords do not match</mat-error>
+      <mat-error *ngIf="passwordForm.hasError('notSame')" i18n>Passwords do not match</mat-error>
     </mat-form-field>
   </div>
 
   <div>
-    <button mat-raised-button class="register-form" color="primary" (click)="onRegister()">Submit</button>
+    <button mat-raised-button class="register-form" color="primary" (click)="onRegister()" i18n>Submit</button>
   </div>
   <div *ngIf="isRegistrationFailed" class="register-form" id="error-message">{{errorMessage}}</div>
 

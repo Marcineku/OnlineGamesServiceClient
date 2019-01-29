@@ -50,15 +50,15 @@
 
   <mat-grid-tile [colspan]="1" [rowspan]="1">
     <div *ngIf="gameState">
-      <p>Turn: {{gameState.userTurn ? gameState.userTurn : 'AI'}}</p>
+      <p><span i18n>Turn: </span>{{gameState.userTurn ? gameState.userTurn : 'AI'}}</p>
     </div>
     <div *ngIf="isOwner">
       <button mat-raised-button color="primary" (click)="onGameStart()"
-              [disabled]="gameInfo ? gameInfo.gameType === 'MULTIPLAYER' && gameInfo.secondPlayer === null || gameInfo.gameStatus !== 'WAITING_FOR_PLAYER' : false">
+              [disabled]="gameInfo ? gameInfo.gameType === 'MULTIPLAYER' && gameInfo.secondPlayer === null || gameInfo.gameStatus !== 'WAITING_FOR_PLAYER' : false" i18n>
         Start
       </button>
       <button mat-raised-button color="primary" (click)="onGameAbandon()"
-              [disabled]="gameInfo ? gameInfo.gameStatus !== 'WAITING_FOR_PLAYER' : false">
+              [disabled]="gameInfo ? gameInfo.gameStatus !== 'WAITING_FOR_PLAYER' : false" i18n>
         Abandon
       </button>
     </div>

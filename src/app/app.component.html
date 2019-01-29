@@ -1,8 +1,25 @@
-<div id="container">
+<div id="container" [class.alternative]="lightTheme">
 
   <mat-toolbar id="toolbar">
-    <div>Status: <span [ngClass]="'status-' + stompState.toLowerCase()">{{stompState}}</span></div>
-    <div id="title">Online Games</div>
+    <div><span i18n>Status: </span><span [ngClass]="'status-' + stompState.toLowerCase()">{{stompState}}</span></div>
+    <div id="title" i18n>Online Games</div>
+    <mat-list>
+      <mat-list-item>
+        <button mat-icon-button (click)="onSetLocale('en')">
+          <img mat-list-avatar *ngIf="americanFlagGiphyUrl" [src]="americanFlagGiphyUrl">
+        </button>
+      </mat-list-item>
+    </mat-list>
+    <mat-list>
+      <mat-list-item>
+        <button mat-list-avatar mat-icon-button (click)="onSetLocale('pl')">
+          <img mat-list-avatar *ngIf="polishFlagGiphyUrl" [src]="polishFlagGiphyUrl">
+        </button>
+      </mat-list-item>
+    </mat-list>
+
+    <button id="style-button" (click)="onChangeStyle()">Light/Dark</button>
+
     <button mat-raised-button id="sidenav-button" (click)="sidenav.toggle()">{{username}}</button>
   </mat-toolbar>
 
@@ -17,15 +34,15 @@
 
       <nav mat-tab-nav-bar>
         <a mat-tab-link routerLink="news" routerLinkActive #rlaNews="routerLinkActive"
-           [active]="rlaNews.isActive">News</a>
+           [active]="rlaNews.isActive" i18n>News</a>
         <a mat-tab-link routerLink="games" routerLinkActive #rlaGames="routerLinkActive"
            [active]="rlaGames.isActive"
-           [disabled]="!isLoggedIn">Games</a>
+           [disabled]="!isLoggedIn" i18n>Games</a>
         <a mat-tab-link routerLink="summary" routerLinkActive #rlaSummary="routerLinkActive"
            [active]="rlaSummary.isActive"
-           [disabled]="!isLoggedIn">Summary</a>
+           [disabled]="!isLoggedIn" i18n>Summary</a>
         <a *ngIf="isAdminLoggedIn" mat-tab-link routerLink="admin" routerLinkActive #rlaAdmin="routerLinkActive"
-           [active]="rlaAdmin.isActive">Admin</a>
+           [active]="rlaAdmin.isActive" i18n>Admin</a>
       </nav>
 
       <router-outlet></router-outlet>

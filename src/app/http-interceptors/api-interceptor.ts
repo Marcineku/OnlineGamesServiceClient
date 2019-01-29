@@ -9,7 +9,7 @@ const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-  private apiUrl = 'http://192.168.99.100:8080/';
+  private apiUrl = 'http://localhost:8080/';
 
   constructor(private auth: AuthService,
               private sessionStorage: SessionStorageService) {

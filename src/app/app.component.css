@@ -22,6 +22,11 @@
   right: 10px;
 }
 
+#style-button {
+  position: absolute;
+  right: 150px;
+}
+
 #sidenav-container {
   height: 100%;
 }

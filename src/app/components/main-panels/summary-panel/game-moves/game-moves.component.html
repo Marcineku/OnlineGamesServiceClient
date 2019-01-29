@@ -21,8 +21,8 @@
   </div>
 
   <div>
-    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.openAll()">Open all</button>
-    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.closeAll()">Collapse all
+    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.openAll()" i18n>Open all</button>
+    <button class="game-moves-button" mat-raised-button color="primary" (click)="accordion.closeAll()" i18n>Collapse all
     </button>
   </div>
 
@@ -30,10 +30,10 @@
     <mat-expansion-panel *ngFor="let boardWithMove of boardsWithMoves">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <span>No. {{boardWithMove.move.moveNo}}</span>
+          <span><span i18n>No. </span>{{boardWithMove.move.moveNo}}</span>
         </mat-panel-title>
         <mat-panel-description>
-          <span>Turn: {{boardWithMove.move.username ? boardWithMove.move.username : 'AI'}}
+          <span><span i18n>Turn: </span>{{boardWithMove.move.username ? boardWithMove.move.username : 'AI'}}
             ({{boardWithMove.move.username === gameInfo.firstPlayer ? gameInfo.firstPlayerPieceCode : (gameInfo.firstPlayerPieceCode === 'x' ? 'X' : 'O')}})
           </span>
         </mat-panel-description>

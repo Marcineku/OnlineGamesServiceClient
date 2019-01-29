@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 ">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="295bb17e78fef00b6d8eb879a1fc616013ec2d09" datatype="html">
+        <source>Status:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="469255c4bd60a41ea3be2facf3c21c012134ac2a" datatype="html">
+        <source>Online Games</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1d0974afae70914072a4fbf19e53328e517bae73" datatype="html">
+        <source>News</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71249314fa72f5f9e0d93b8c59f9e148e0ff617f" datatype="html">
+        <source>Games</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a8233de047500bf0f0d9f9f1712ddb071501a283" datatype="html">
+        <source>Summary</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d44da2ca04de85d1bbe27c316870a004bc26cc09" datatype="html">
+        <source>Enter username that contains from 4 to 20 characters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/login/login.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5fa5c05063493603a4bba6c2341641a83fb0be18" datatype="html">
+        <source>Enter password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/login/login.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/login/login.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd9d84e1712e1bb15e3fb3c7dcc0f8f30b30cdcb" datatype="html">
+        <source>
+          Account was successfully created, you can now login
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/login/login.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bb694b49d408265c91c62799c2b3a7e3151c824d" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="211ad481457d4d973f90556a819e51b7851cbb5c" datatype="html">
+        <source>Enter valid email address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aeb72b02ae41264d9fef3dde93f817f2e049eb47" datatype="html">
+        <source>Choose at least one role</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c35e81f5443541721d52cba738b91ce3cb2ff10c" datatype="html">
+        <source>
+          Enter password that contains between 6 and 16 characters
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0a9dcaac5aadd48fe716eaff77ab9b21a8bef3af" datatype="html">
+        <source>Passwords do not match</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/registration/registration.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4475c0d156cb63f80764a543ef3fc860af88dad4" datatype="html">
+        <source>Username:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e98b5e6562f470622527a34af38f905b2d7aa2c7" datatype="html">
+        <source>Roles:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d40ac789bfe83ba7bebee976ca5b840d4ac56b1" datatype="html">
+        <source>Token type:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="96ba3fa0f3f5742a9c0ed5fe23df4a2f350eb82d" datatype="html">
+        <source>Token:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/user/user-details/user-details.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0e216e5f6fbc2624835314674161cb09ba5b785c" datatype="html">
+        <source>Add news</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7f03b91d9d42be324adb38315bac933f1d062bf7" datatype="html">
+        <source>Enter type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="25868c616c1c99f0385f3fb0267745c883ba3ace" datatype="html">
+        <source>Enter text</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="158564943eae6ede0fc14065efbacc992cacc208" datatype="html">
+        <source>Enter title</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8f2e3daf4aa2b11221b1a65afbc66f7c2a99a0f1" datatype="html">
+        <source>Pick one language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72cc4500fd5c2d08e8e614f11343506af1288b2f" datatype="html">
+        <source>
+          Create news
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4fa66debead62fbf26e562b5646266b5d0600b97" datatype="html">
+        <source>Github Traffic</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0a0511872194dafdb11ba2c44f1f03d78cb6a820" datatype="html">
+        <source>Client</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ee5b16adf0b237e70b8567f7af3e5c8a547d50ac" datatype="html">
+        <source>Total:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="577d2ae1ba894a301e93f4da5bb3765776afd4a4" datatype="html">
+        <source>Uniques:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
+        <source>Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06412bce0f4fe4311193e9763666089bf9d980da" datatype="html">
+        <source>Count</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3bb25c469505e8aae010145686e35552ac0842e9" datatype="html">
+        <source>Uniques</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="905882c0fe09eee755ee6730ecf10e3b85cb6d9c" datatype="html">
+        <source>Server</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/components/main-panels/admin-panel/admin-panel.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f15b6135743c47ba94d60218a34876d2634170ab" datatype="html">
+        <source>Turn:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
+          </context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
+          </context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="585838ce2a0bb8f81dbe13104a25b960ea948af1" datatype="html">
+        <source>
+          Start
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
+          </context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="13a708ab1f05214f1630667aa40d55583dc99d7a" datatype="html">
+        <source>
+          Abandon
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-game/tic-tac-toe-game.component.html
+          </context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6041e826c0b4eda69d6942706546df48113b32ab" datatype="html">
+        <source>Choose game type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
+          </context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="19604e3e269c80b1e241bf4a376b592f55f953e8" datatype="html">
+        <source>Choose piece code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
+          </context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5a490605d0885d2ce3e81c928ea34da4a7723add" datatype="html">
+        <source>
+          Create game
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/games-panel/games/tic-tac-toe/tic-tac-toe-lobby/tic-tac-toe-lobby.component.html
+          </context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/games-history/games-history.component.html
+          </context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5049e204c14c648691ac775a64fb504467aeb549" datatype="html">
+        <source>Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/games-history/games-history.component.html
+          </context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d2565f2e150e99a1421008f9e4496ad22dc02f76" datatype="html">
+        <source>Open all</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
+          </context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="373e3c8e4793c3c3645c163bf4c2645d7b835899" datatype="html">
+        <source>Collapse all
+        </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
+          </context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4f2b657098231a4a4920165bc1ed34feb2e2e9d7" datatype="html">
+        <source>No.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">
+            app/components/main-panels/summary-panel/game-moves/game-moves.component.html
+          </context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

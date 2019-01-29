@@ -1,50 +1,50 @@
 <mat-grid-list cols="3" rowHeight="fit">
   <mat-grid-tile [colspan]="1" [rowspan]="10">
     <form>
-      <h3 class="news-input">Add news</h3>
+      <h3 class="news-input" i18n>Add news</h3>
       <mat-form-field class="news-input">
         <input matInput placeholder="Type" [formControl]="type">
-        <mat-error *ngIf="type.invalid">Enter type</mat-error>
+        <mat-error *ngIf="type.invalid" i18n>Enter type</mat-error>
       </mat-form-field>
 
       <mat-form-field class="news-input">
         <input matInput placeholder="Text" [formControl]="text">
-        <mat-error *ngIf="text.invalid">Enter text</mat-error>
+        <mat-error *ngIf="text.invalid" i18n>Enter text</mat-error>
       </mat-form-field>
 
       <mat-form-field class="news-input">
         <input matInput placeholder="Title" [formControl]="title">
-        <mat-error *ngIf="title.invalid">Enter title</mat-error>
+        <mat-error *ngIf="title.invalid" i18n>Enter title</mat-error>
       </mat-form-field>
 
       <mat-form-field class="news-input">
         <mat-select placeholder="Language" [formControl]="languages">
           <mat-option *ngFor="let lang of languagesList" [value]="lang">{{lang}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="languages.invalid">Pick one language</mat-error>
+        <mat-error *ngIf="languages.invalid" i18n>Pick one language</mat-error>
       </mat-form-field>
 
-      <button class="news-input" mat-raised-button id="news-create-button" color="primary" (click)="onCreateNews()">
+      <button class="news-input" mat-raised-button id="news-create-button" color="primary" (click)="onCreateNews()" i18n>
         Create news
       </button>
       <div class="news-input">{{info}}</div>
     </form>
   </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="2" [rowspan]="4">
-    <h2>Github Traffic</h2>
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
+    <h2 i18n>Github Traffic</h2>
   </mat-grid-tile>
 
   <mat-grid-tile [colspan]="1" [rowspan]="9">
     <div *ngIf="clientTraffic">
-      <h3>Client</h3>
-      <h2>Total: {{clientTraffic.count}}</h2>
-      <h2>Uniques: {{clientTraffic.uniques}}</h2>
+      <h3 i18n>Client</h3>
+      <h2><span i18n>Total: </span>{{clientTraffic.count}}</h2>
+      <h2><span i18n>Uniques: </span>{{clientTraffic.uniques}}</h2>
       <mat-list>
         <mat-list-item style="color: #888888">
-          <span>Date</span>
-          <span>Count</span>
-          <span>Uniques</span>
+          <span i18n>Date</span>
+          <span i18n>Count</span>
+          <span i18n>Uniques</span>
         </mat-list-item>
         <mat-list-item *ngFor="let client of clientTraffic.views">
           <span>{{client.timestamp | date: 'dd.MM'}}</span>
@@ -57,14 +57,14 @@
 
   <mat-grid-tile [colspan]="1" [rowspan]="9">
     <div *ngIf="serverTraffic">
-      <h3>Server</h3>
-      <h2>Total: {{serverTraffic.count}}</h2>
-      <h2>Uniques: {{serverTraffic.uniques}}</h2>
+      <h3 i18n>Server</h3>
+      <h2><span i18n>Total: </span>{{serverTraffic.count}}</h2>
+      <h2><span i18n>Uniques: </span>{{serverTraffic.uniques}}</h2>
       <mat-list>
         <mat-list-item style="color: #888888">
-          <span>Date</span>
-          <span>Count</span>
-          <span>Uniques</span>
+          <span i18n>Date</span>
+          <span i18n>Count</span>
+          <span i18n>Uniques</span>
         </mat-list-item>
         <mat-list-item *ngFor="let server of serverTraffic.views">
           <span>{{server.timestamp | date: 'dd.MM'}}</span>

@@ -14,7 +14,7 @@ export class ChatMessage {
 }
 
 const rxStompConfig: InjectableRxStompConfig = {
-  brokerURL: 'ws://192.168.99.100:8080/socket',
+  brokerURL: 'ws://localhost:8080/socket',
   connectHeaders: {},
   heartbeatIncoming: 0,
   heartbeatOutgoing: 20000,

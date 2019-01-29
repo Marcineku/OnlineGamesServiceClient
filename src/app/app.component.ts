@@ -4,6 +4,7 @@ import {MediaMatcher} from '@angular/cdk/layout';
 import {AuthService} from './services/auth.service';
 import {Subscription} from 'rxjs';
 import {StompService} from './services/stomp.service';
+import {Gif, GiphyService} from './services/giphy.service';
 
 @Component({
   selector: 'app-root',
@@ -20,15 +21,37 @@ export class AppComponent implements OnInit, OnDestroy {
   private logged: Subscription;
   private stompErrors: Subscription;
   private stompConnectionState: Subscription;
+  locale: string;
+  americanFlagGiphyUrl: string;
+  polishFlagGiphyUrl: string;
+  lightTheme: boolean;
 
   constructor(private sessionStorage: SessionStorageService,
               private changeDetectorRef: ChangeDetectorRef,
               private media: MediaMatcher,
               private auth: AuthService,
-              private stomp: StompService) {
+              private stomp: StompService,
+              private giphy: GiphyService) {
   }
 
   ngOnInit() {
+    const theme = this.sessionStorage.getTheme();
+    this.lightTheme = theme !== 'dark';
+
+    this.giphy.getGif(Gif.AmericanFlag).subscribe(
+      res => {
+        this.americanFlagGiphyUrl = res;
+      }
+    );
+
+    this.giphy.getGif(Gif.PolishFlag).subscribe(
+      res => {
+        this.polishFlagGiphyUrl = res;
+      }
+    );
+
+    this.locale = this.sessionStorage.getLocale();
+
     this.stompErrors = this.stomp.getConnectionErrors().subscribe(
       () => {
         this.stomp.disconnect();
@@ -62,6 +85,20 @@ export class AppComponent implements OnInit, OnDestroy {
     this.stomp.disconnect();
     this.stompErrors.unsubscribe();
     this.stompConnectionState.unsubscribe();
+  }
+
+  onSetLocale(locale: string) {
+    if (this.locale !== locale) {
+      this.sessionStorage.setLocale(locale);
+    }
+  }
+
+  onChangeStyle() {
+    if (this.lightTheme) {
+      this.lightTheme = false;
+    } else {
+      this.lightTheme = true;
+    }
   }
 
   private onLogged(logged: boolean) {

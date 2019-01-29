@@ -40,17 +40,17 @@
         <mat-select placeholder="Game type" [formControl]="gameTypes">
           <mat-option *ngFor="let gameType of gameTypesList" [value]="gameType">{{gameType}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="gameTypes.invalid">Choose game type</mat-error>
+        <mat-error *ngIf="gameTypes.invalid" i18n>Choose game type</mat-error>
       </mat-form-field>
 
       <mat-form-field class="games-creation-form">
         <mat-select placeholder="Circle or cross" [formControl]="pieceCodes">
           <mat-option *ngFor="let pieceCode of pieceCodesList" [value]="pieceCode">{{pieceCode}}</mat-option>
         </mat-select>
-        <mat-error *ngIf="pieceCodes.invalid">Choose piece code</mat-error>
+        <mat-error *ngIf="pieceCodes.invalid" i18n>Choose piece code</mat-error>
       </mat-form-field>
 
-      <button mat-raised-button class="games-creation-form" color="primary" (click)="createNewGame()">
+      <button mat-raised-button class="games-creation-form" color="primary" (click)="createNewGame()" i18n>
         Create game
       </button>
 
