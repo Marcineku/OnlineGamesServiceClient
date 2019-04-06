@@ -1,27 +1,12 @@
-#test
-# PZProjectClient
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+# Online Games Service Client
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Description
+Portal that allows to play online games with tictactoe implemented as an example game. User, after logging into his accounts will be
+allowed to browse available games and play them. After selecting chosen game, user will be able join active room or create his own room.
+When it will be appropriate number of players in room, owner will be able to start a game. Application also allows playing vs AI (also
+implemented in example tictactoe game). User has insight into history of games played, with ability to check every move made in specific game. Every game room owns a chat and game view, owner additionaly has control panel. App also has two styles (dark and bright) and two languages available (polish and english). Client app is created with HTML/CSS/TypeScript and Angular framework with angular materials, Ng2-stompjs, Rxjs and Xi18n. Server was built with Java and Spring Boot, Spring Data JPA, Spring Security, Lombok, Spring AMQP, JWT, Mapstruct, Swagger and Spring-boot-starter-mail. Entire app is composed using docker.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# App footage
+https://youtu.be/B9bxrmvwJ0E
