@@ -1,6 +1,6 @@
 # Online Games Service Client
 
-![alt text]()
+![alt text](https://raw.githubusercontent.com/Marcineku/OnlineGamesServiceClient/master/Not%20logged%20in.png)
 
 # Description
 Portal that allows to play online games with tictactoe implemented as an example game. User, after logging into his accounts will be
@@ -65,7 +65,9 @@ services:
         ports:
             - 80:80
 ```
+
 After that step your directory with projects should look like this:
-![alt text]()
+![alt text](https://raw.githubusercontent.com/Marcineku/OnlineGamesServiceClient/master/Docker%20folder.png)
+
 4. Open cmd or powershell in that folder and type "docker-compose up"
 Now wait for docker to do its thing, after that you can access app by typing localhost in any web browser.
