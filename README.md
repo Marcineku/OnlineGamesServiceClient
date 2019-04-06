@@ -69,5 +69,5 @@ services:
 After that step your directory with projects should look like this:
 ![alt text](https://raw.githubusercontent.com/Marcineku/OnlineGamesServiceClient/master/Docker%20folder.png)
 
-4. Open cmd or powershell in that folder and type "docker-compose up"
+4. Open shell in that folder and type "docker-compose up"
 Now wait for docker to do its thing, after that you can access app by typing localhost in any web browser.
